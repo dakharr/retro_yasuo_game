@@ -86,9 +86,9 @@ function createScene()
         grounded = false;
         perso.material.diffuseColor = new BABYLON.Color3(1,1,1);
 
-        //update x pos
-        //perso.position.x += xdep;
-        perso.moveWithCollisions(new BABYLON.Vector3(xdep,0,0));
+        //update player position
+        var deltatime = scene.getEngine().getDeltaTime();
+        perso.moveWithCollisions(new BABYLON.Vector3(xdep,vy,0));
 
         //move background
         background.material.diffuseTexture.uOffset += xdep/100;
@@ -97,16 +97,6 @@ function createScene()
         camera.position.x = perso.position.x;
         background.position.x = perso.position.x;
 
-        
-        
-
-        //gravity
-        if(!grounded)
-        {
-            vy -= 0.001;
-            perso.moveWithCollisions(new BABYLON.Vector3(0, vy, 0));
-            //perso.position.y += vy;
-        }
 
         //2 ray for more accuracy in the detection of the ground
         var raypos1 = new BABYLON.Vector3(perso.position.x+0.1, perso.position.y-0.5, perso.position.z);
@@ -131,7 +121,6 @@ function createScene()
         else
         {
             vy -= 0.001;
-            perso.moveWithCollisions(new BABYLON.Vector3(0, vy, 0));
         }
     });
 
