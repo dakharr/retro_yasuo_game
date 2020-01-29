@@ -65,30 +65,6 @@ function createScene()
     scene.registerAfterRender(function()
     {
         updatePlayer(map, scene);
-        //x deplacement
-        // var xdep = 0;
-        // if((map["q"] || map["Q"]))
-        // {
-        //     xdep = -0.05;
-        //     playerSprite.invertU = true;
-        // };
-        // if((map["d"] || map["D"]))
-        // {
-        //     xdep = 0.05;
-        //     playerSprite.invertU = false;
-        // };
-
-        // //jump
-        // if((map["Z"] || map["z"]) && grounded)
-        // {
-        //     vy = Math.sqrt(0 - 2*-0.001*2);
-        // };
-        // //collision on x axis
-        // grounded = false;
-
-        //update player position
-        // var deltatime = scene.getEngine().getDeltaTime();
-        // player.moveWithCollisions(new BABYLON.Vector3(xdep,vy,0));
 
         //move background
         background.material.diffuseTexture.uOffset += xdep/100;
@@ -96,34 +72,6 @@ function createScene()
         //cam and background follow player
         camera.position.x = player.position.x;
         background.position.x = player.position.x;
-
-        //sprite follow player
-        // playerSprite.position = player.position;
-
-
-        //2 ray for more accuracy in the detection of the ground
-        // var raypos1 = new BABYLON.Vector3(player.position.x+0.1, player.position.y-0.5, player.position.z);
-        // var ray1 = new BABYLON.Ray(raypos1, new BABYLON.Vector3(0, -1, 0), 0.01);
-        // var hit1 = scene.pickWithRay(ray1);
-
-        // var raypos2 = new BABYLON.Vector3(player.position.x-0.1, player.position.y-0.5, player.position.z);
-        // var ray2 = new BABYLON.Ray(raypos2, new BABYLON.Vector3(0, -1, 0), 0.01);
-        // var hit2 = scene.pickWithRay(ray2);
-
-        // let rayHelper1 = new BABYLON.RayHelper(ray1);		
-        // rayHelper1.show(scene);
-        // let rayHelper2 = new BABYLON.RayHelper(ray2);		
-		// rayHelper2.show(scene);
-
-        // if(hit1.pickedMesh!=null || hit2.pickedMesh!=null)
-        // {
-        //     vy = 0;
-        //     grounded = true;
-        // }
-        // else
-        // {
-        //     vy -= 0.001;
-        // }
     });
 
     return scene;
