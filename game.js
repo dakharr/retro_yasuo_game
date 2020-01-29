@@ -26,19 +26,23 @@ function createScene()
 
     //character
     var perso = BABYLON.MeshBuilder.CreatePlane("player", {width: 1, height: 1}, scene);
+
+    var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager", "resources/yasuo_animation.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    var persoSprite = new BABYLON.Sprite("pp", spriteManagerPlayer);
+    persoSprite.playAnimation(1, 5, true, 100);
+    //perso.position = new BABYLON.Vector3(0, 3, -1);
+
     perso.position.z = -0.5;
     perso.position.y = 4;
     perso.checkCollisions = true;
     perso.ellipsoid = new BABYLON.Vector3(0.20, 0.5, 0.5); // collision "box"
-    var persoMaterial = new BABYLON.StandardMaterial("yasuo", scene);
-    persoMaterial.diffuseTexture = new BABYLON.Texture("resources/yasuo.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    persoMaterial.diffuseTexture.hasAlpha = true;
-    perso.material = persoMaterial;
+    perso.isVisible = false;
+    // var persoMaterial = new BABYLON.StandardMaterial("yasuo", scene);
+    // persoMaterial.diffuseTexture = new BABYLON.Texture("resources/yasuo.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    // persoMaterial.diffuseTexture.hasAlpha = true;
+    // perso.material = persoMaterial;
 
-    var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager", "resources/yasuo_animation.png", 2, 64);
-    var sprite = new BABYLON.Sprite("pp", spriteManagerPlayer);
-    sprite.playAnimation(1, 5, true, 100);
-    sprite.position = new BABYLON.Vector3(0, 3, -1);
+    
 
     // background
     var background = BABYLON.MeshBuilder.CreatePlane("background", {width: 20, height: 20}, scene);
@@ -70,15 +74,16 @@ function createScene()
         {
             xdep = -0.05;
 
-            perso.material.diffuseTexture.uScale = -1;
-            perso.material.diffuseTexture.vScale = 1;
+            //perso.material.diffuseTexture.uScale = -1;
+            //perso.material.diffuseTexture.vScale = 1;
+            persoSprite.invertU = true;
         };
         if((map["d"] || map["D"]))
         {
             xdep = 0.05;
-
-            perso.material.diffuseTexture.uScale = 1;
-            perso.material.diffuseTexture.vScale = 1;
+            persoSprite.invertU = false;
+            //perso.material.diffuseTexture.uScale = 1;
+            //perso.material.diffuseTexture.vScale = 1;
 
         };
 
@@ -89,7 +94,7 @@ function createScene()
         };
         //collision on x axis
         grounded = false;
-        perso.material.diffuseColor = new BABYLON.Color3(1,1,1);
+        //perso.material.diffuseColor = new BABYLON.Color3(1,1,1);
 
         //update player position
         var deltatime = scene.getEngine().getDeltaTime();
@@ -101,6 +106,9 @@ function createScene()
         //cam and background follow player
         camera.position.x = perso.position.x;
         background.position.x = perso.position.x;
+
+        //sprite follow player
+        persoSprite.position = perso.position;
 
 
         //2 ray for more accuracy in the detection of the ground
@@ -119,7 +127,7 @@ function createScene()
 
         if(hit1.pickedMesh!=null || hit2.pickedMesh!=null)
         {
-            perso.material.diffuseColor = new BABYLON.Color3(1,0,0);
+            //perso.material.diffuseColor = new BABYLON.Color3(1,0,0);
             vy = 0;
             grounded = true;
         }
