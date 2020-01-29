@@ -25,16 +25,6 @@ function createScene()
     }));
 
     //character
-    // var perso = BABYLON.MeshBuilder.CreatePlane("player", {width: 1, height: 1}, scene);
-    // perso.position.z = -0.5;
-    // perso.position.y = 4;
-    // perso.checkCollisions = true;
-    // perso.ellipsoid = new BABYLON.Vector3(0.20, 0.5, 0.5); // collision "box"
-    // perso.isVisible = false;
-
-    // var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager", "resources/yasuo_animation.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    // var persoSprite = new BABYLON.Sprite("pp", spriteManagerPlayer);
-    // persoSprite.playAnimation(1, 5, true, 100);
     createPlayer(scene);
 
     // background
@@ -55,11 +45,6 @@ function createScene()
     cube2.position.x = 2;
     cube2.position.y = 2;
     cube2.checkCollisions = true;
-
-    //---moving
-    var grounded = false; //is grounded flag
-    var vy = 0; // jump/falling velocity
-    
     
     //update loop
     scene.registerAfterRender(function()
