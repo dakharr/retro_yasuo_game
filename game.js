@@ -25,16 +25,17 @@ function createScene()
     }));
 
     //character
-    var perso = BABYLON.MeshBuilder.CreatePlane("player", {width: 1, height: 1}, scene);
-    perso.position.z = -0.5;
-    perso.position.y = 4;
-    perso.checkCollisions = true;
-    perso.ellipsoid = new BABYLON.Vector3(0.20, 0.5, 0.5); // collision "box"
-    perso.isVisible = false;
+    // var perso = BABYLON.MeshBuilder.CreatePlane("player", {width: 1, height: 1}, scene);
+    // perso.position.z = -0.5;
+    // perso.position.y = 4;
+    // perso.checkCollisions = true;
+    // perso.ellipsoid = new BABYLON.Vector3(0.20, 0.5, 0.5); // collision "box"
+    // perso.isVisible = false;
 
-    var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager", "resources/yasuo_animation.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    var persoSprite = new BABYLON.Sprite("pp", spriteManagerPlayer);
-    persoSprite.playAnimation(1, 5, true, 100);
+    // var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager", "resources/yasuo_animation.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    // var persoSprite = new BABYLON.Sprite("pp", spriteManagerPlayer);
+    // persoSprite.playAnimation(1, 5, true, 100);
+    createPlayer(scene);
 
     // background
     var background = BABYLON.MeshBuilder.CreatePlane("background", {width: 20, height: 20}, scene);
@@ -46,6 +47,9 @@ function createScene()
     var cube = BABYLON.Mesh.CreateBox("crate", 1 , scene);
     cube.position.z = 0;
     cube.checkCollisions = true;
+    var materialCube = new BABYLON.StandardMaterial("texturee", scene);
+    materialCube.diffuseTexture = new BABYLON.Texture("resources/Capture2.jpg", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    cube.material = materialCube;
 
     var cube2 = BABYLON.Mesh.CreateBox("crate", 1 , scene);
     cube2.position.x = 2;
@@ -60,65 +64,66 @@ function createScene()
     //update loop
     scene.registerAfterRender(function()
     {
+        updatePlayer(map, scene);
         //x deplacement
-        var xdep = 0;
-        if((map["q"] || map["Q"]))
-        {
-            xdep = -0.05;
-            persoSprite.invertU = true;
-        };
-        if((map["d"] || map["D"]))
-        {
-            xdep = 0.05;
-            persoSprite.invertU = false;
-        };
+        // var xdep = 0;
+        // if((map["q"] || map["Q"]))
+        // {
+        //     xdep = -0.05;
+        //     playerSprite.invertU = true;
+        // };
+        // if((map["d"] || map["D"]))
+        // {
+        //     xdep = 0.05;
+        //     playerSprite.invertU = false;
+        // };
 
-        //jump
-        if((map["Z"] || map["z"]) && grounded)
-        {
-            vy = Math.sqrt(0 - 2*-0.001*2);
-        };
-        //collision on x axis
-        grounded = false;
+        // //jump
+        // if((map["Z"] || map["z"]) && grounded)
+        // {
+        //     vy = Math.sqrt(0 - 2*-0.001*2);
+        // };
+        // //collision on x axis
+        // grounded = false;
 
         //update player position
-        var deltatime = scene.getEngine().getDeltaTime();
-        perso.moveWithCollisions(new BABYLON.Vector3(xdep,vy,0));
+        // var deltatime = scene.getEngine().getDeltaTime();
+        // player.moveWithCollisions(new BABYLON.Vector3(xdep,vy,0));
 
         //move background
         background.material.diffuseTexture.uOffset += xdep/100;
 
         //cam and background follow player
-        camera.position.x = perso.position.x;
-        background.position.x = perso.position.x;
+        camera.position.x = player.position.x;
+        background.position.x = player.position.x;
 
         //sprite follow player
-        persoSprite.position = perso.position;
+        // playerSprite.position = player.position;
 
 
         //2 ray for more accuracy in the detection of the ground
-        var raypos1 = new BABYLON.Vector3(perso.position.x+0.1, perso.position.y-0.5, perso.position.z);
-        var ray1 = new BABYLON.Ray(raypos1, new BABYLON.Vector3(0, -1, 0), 0.01);
-        var hit1 = scene.pickWithRay(ray1);
+        // var raypos1 = new BABYLON.Vector3(player.position.x+0.1, player.position.y-0.5, player.position.z);
+        // var ray1 = new BABYLON.Ray(raypos1, new BABYLON.Vector3(0, -1, 0), 0.01);
+        // var hit1 = scene.pickWithRay(ray1);
 
-        var raypos2 = new BABYLON.Vector3(perso.position.x-0.1, perso.position.y-0.5, perso.position.z);
-        var ray2 = new BABYLON.Ray(raypos2, new BABYLON.Vector3(0, -1, 0), 0.01);
-        var hit2 = scene.pickWithRay(ray2);
+        // var raypos2 = new BABYLON.Vector3(player.position.x-0.1, player.position.y-0.5, player.position.z);
+        // var ray2 = new BABYLON.Ray(raypos2, new BABYLON.Vector3(0, -1, 0), 0.01);
+        // var hit2 = scene.pickWithRay(ray2);
 
         // let rayHelper1 = new BABYLON.RayHelper(ray1);		
         // rayHelper1.show(scene);
         // let rayHelper2 = new BABYLON.RayHelper(ray2);		
 		// rayHelper2.show(scene);
 
-        if(hit1.pickedMesh!=null || hit2.pickedMesh!=null)
-        {
-            vy = 0;
-            grounded = true;
-        }
-        else
-        {
-            vy -= 0.001;
-        }
+        // if(hit1.pickedMesh!=null || hit2.pickedMesh!=null)
+        // {
+        //     vy = 0;
+        //     grounded = true;
+        // }
+        // else
+        // {
+        //     vy -= 0.001;
+        // }
     });
 
     return scene;
