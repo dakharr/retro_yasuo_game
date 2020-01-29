@@ -35,6 +35,11 @@ function createScene()
     persoMaterial.diffuseTexture.hasAlpha = true;
     perso.material = persoMaterial;
 
+    var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager", "resources/yasuo_animation.png", 2, 64);
+    var sprite = new BABYLON.Sprite("pp", spriteManagerPlayer);
+    sprite.playAnimation(1, 5, true, 100);
+    sprite.position = new BABYLON.Vector3(0, 3, -1);
+
     // background
     var background = BABYLON.MeshBuilder.CreatePlane("background", {width: 20, height: 20}, scene);
     var material = new BABYLON.StandardMaterial("texture1", scene);
