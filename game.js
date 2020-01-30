@@ -1,3 +1,6 @@
+var spawnPosition;
+var blockList;
+
 function createScene()
 {
     // This creates a basic Babylon Scene object (non-mesh)
@@ -45,6 +48,14 @@ function createScene()
     cube2.position.x = 2;
     cube2.position.y = 2;
     cube2.checkCollisions = true;
+
+    
+
+    loadLevel(stringLevel);
+
+    player.position = spawnPosition;
+
+    //console.log(stringLevel);
     
     //update loop
     scene.registerAfterRender(function()
@@ -60,5 +71,31 @@ function createScene()
     });
 
     return scene;
+}
+
+function loadLevel(stringLevel)
+{
+    blockList = [];
+    var stringLine = stringLevel.split('\n');
+    for(let height=0; height<levelHeight;height++)
+    {
+        var caracter = stringLine[height].split(' ');
+        for(let width=0; width<levelWidth;width++)
+        {
+            console.log(caracter[width]);
+            if(caracter[width] == "1")
+            {
+                var newblock = BABYLON.Mesh.CreateBox("block"+height+"/"+width, 1, scene);
+                newblock.position = new BABYLON.Vector3(width,levelHeight - height, 0);
+                newblock.checkCollisions = true;
+                blockList.push(newblock);
+            }
+            else if(caracter[width] == "x")
+            {
+                spawnPosition = new BABYLON.Vector3(width, levelHeight - height, 0);
+            }
+            
+        }
+    }
 }
 
