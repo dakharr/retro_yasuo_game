@@ -1,0 +1,3 @@
+0: vide
+1: block
+x: spawnPoint (one per level)
