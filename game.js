@@ -1,6 +1,5 @@
 var spawnPosition;
 var blockList;
-
 function createScene()
 {
     // This creates a basic Babylon Scene object (non-mesh)
@@ -49,19 +48,14 @@ function createScene()
     cube2.position.y = 2;
     cube2.checkCollisions = true;
 
-    
-
     loadLevel(stringLevel);
 
     player.position = spawnPosition;
-
-    //console.log(stringLevel);
     
     //update loop
     scene.registerAfterRender(function()
     {
         updatePlayer(map, scene);
-
         //move background
         background.material.diffuseTexture.uOffset += xdep/100;
 
@@ -82,13 +76,11 @@ function loadLevel(stringLevel)
         var caracter = stringLine[height].split(' ');
         for(let width=0; width<levelWidth;width++)
         {
-            console.log(caracter[width]);
             if(caracter[width] == "1")
             {
-                var newblock = BABYLON.Mesh.CreateBox("block"+height+"/"+width, 1, scene);
-                newblock.position = new BABYLON.Vector3(width,levelHeight - height, 0);
-                newblock.checkCollisions = true;
-                blockList.push(newblock);
+                var pos = new BABYLON.Vector3(width,levelHeight - height, 0);
+                
+                blockList.push(buildBlock(pos));
             }
             else if(caracter[width] == "x")
             {
@@ -97,5 +89,29 @@ function loadLevel(stringLevel)
             
         }
     }
+}
+
+function buildBlock(position)
+{
+    var columns = 6;
+    var rows = 6;
+    var faceUV = new Array(6);
+
+    for(let i=0;i<6;i++)
+        faceUV[i] = new BABYLON.Vector4(i/columns, 0, (i+1)/columns, 1/rows);
+
+    var options = {
+        faceUV:faceUV,
+        wrap:true };
+        
+    var mat = new BABYLON.StandardMaterial("blockmat", scene);
+    var atlas = new BABYLON.Texture("resources/atlas.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    mat.diffuseTexture = atlas;
+    var newblock = BABYLON.MeshBuilder.CreateBox('box', options, scene);
+    newblock.position = position;
+    newblock.checkCollisions = true;
+    newblock.material = mat;
+
+    return newblock;
 }
 
