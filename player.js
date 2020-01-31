@@ -25,8 +25,8 @@ function updatePlayer(map, scene)
     //x deplacement
     xdep = 0;
     var speed = 0.005;
-    var gravity = -0.0002;
-    var jumpHeight = 0.3;
+    var gravity = -0.00002;
+    var jumpHeight = 2;
 
     if((map["q"] || map["Q"]))
     {
@@ -48,7 +48,7 @@ function updatePlayer(map, scene)
     grounded = false;
 
     //update player position
-    var deltatime = scene.getEngine().getDeltaTime();
+    var deltatime = engine.getDeltaTime();
     player.moveWithCollisions(new BABYLON.Vector3(xdep*deltatime,vy*deltatime,0));
 
     //sprite follow player
@@ -75,6 +75,6 @@ function updatePlayer(map, scene)
     }
     else
     {
-        vy += gravity;
+        vy += gravity*deltatime;
     }
 }
