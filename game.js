@@ -71,21 +71,23 @@ function loadLevel(stringLevel)
 {
     blockList = [];
     var stringLine = stringLevel.split('\n');
+
+    var levelHeight = stringLine.length;
+    var levelWidth = stringLine[0].split(' ').length;
+
     for(let height=0; height<levelHeight;height++)
     {
         var caracter = stringLine[height].split(' ');
+        
         for(let width=0; width<levelWidth;width++)
         {
             if(caracter[width] == "1")
             {
                 var pos = new BABYLON.Vector3(width,levelHeight - height, 0);
-                
                 blockList.push(buildBlock(pos));
             }
             else if(caracter[width] == "x")
-            {
                 spawnPosition = new BABYLON.Vector3(width, levelHeight - height, 0);
-            }
             
         }
     }
