@@ -25,6 +25,9 @@ function updatePlayer(map, scene)
     //x deplacement
     xdep = 0;
     var speed = 0.005;
+    var gravity = -0.0002;
+    var jumpHeight = 16;
+
     if((map["q"] || map["Q"]))
     {
         xdep = -speed;
@@ -39,7 +42,7 @@ function updatePlayer(map, scene)
     //jump
     if((map["Z"] || map["z"]) && grounded)
     {
-        vy = Math.sqrt(0 - 2*-0.001*2);
+        vy = Math.sqrt(0 - 2*gravity*jumpHeight);
     };
     //collision on x axis
     grounded = false;
@@ -72,6 +75,6 @@ function updatePlayer(map, scene)
     }
     else
     {
-        vy -= 0.001;
+        vy += gravity * deltatime;
     }
 }
