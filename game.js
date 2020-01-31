@@ -51,7 +51,7 @@ function createScene()
 
     loadLevel(stringLevel);
 
-    player.position = spawnPosition;
+    player.position = spawnPosition.clone();
     
     //update loop
     scene.registerAfterRender(function()

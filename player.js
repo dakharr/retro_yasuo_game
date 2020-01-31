@@ -4,6 +4,7 @@ var playerSprite;
 var grounded = false;
 var vy = 0;
 var xdep;
+var moving = false;
 function createPlayer(scene)
 {
     //player entity
@@ -18,6 +19,7 @@ function createPlayer(scene)
     var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager", "resources/yasuo_animation.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     playerSprite = new BABYLON.Sprite("pp", spriteManagerPlayer);
     playerSprite.playAnimation(1, 5, true, 100);
+    // playerSprite.playAnimation(16, 23, true, 100);
 }
 
 function updatePlayer(map, scene)
@@ -77,4 +79,21 @@ function updatePlayer(map, scene)
     {
         vy += gravity*deltatime;
     }
+
+    //animation update
+    if(xdep !=0 && !moving)
+    {
+        playerSprite.playAnimation(16, 23, true, 100);
+        moving = true;
+    }
+    else if(xdep == 0 && moving)
+    {
+        playerSprite.playAnimation(1, 5, true, 100);
+        moving = false;
+    }
+        
+
+    //death check (if player fall out of the map)
+    if(player.position.y < -10)
+        player.position = spawnPosition.clone();
 }
