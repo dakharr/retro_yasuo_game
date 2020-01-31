@@ -24,14 +24,15 @@ function updatePlayer(map, scene)
 {
     //x deplacement
     xdep = 0;
+    var speed = 0.005;
     if((map["q"] || map["Q"]))
     {
-        xdep = -0.05;
+        xdep = -speed;
         playerSprite.invertU = true;
     };
     if((map["d"] || map["D"]))
     {
-        xdep = 0.05;
+        xdep = speed;
         playerSprite.invertU = false;
     };
 
@@ -45,7 +46,7 @@ function updatePlayer(map, scene)
 
     //update player position
     var deltatime = scene.getEngine().getDeltaTime();
-    player.moveWithCollisions(new BABYLON.Vector3(xdep,vy,0));
+    player.moveWithCollisions(new BABYLON.Vector3(xdep*deltatime,vy,0));
 
     //sprite follow player
     playerSprite.position = player.position;

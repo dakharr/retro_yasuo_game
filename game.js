@@ -103,7 +103,7 @@ function buildBlock(position)
     var options = {
         faceUV:faceUV,
         wrap:true };
-        
+
     var mat = new BABYLON.StandardMaterial("blockmat", scene);
     var atlas = new BABYLON.Texture("resources/atlas.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     mat.diffuseTexture = atlas;
