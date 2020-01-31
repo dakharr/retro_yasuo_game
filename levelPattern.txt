@@ -1,3 +1,4 @@
 0: vide
 1: block
 x: spawnPoint (one per level)
+e: endPoint (invisible cube who trigger the end of the level)

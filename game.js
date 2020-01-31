@@ -1,5 +1,6 @@
 var spawnPosition;
 var blockList;
+var endBlockList;
 function createScene()
 {
     // This creates a basic Babylon Scene object (non-mesh)
@@ -62,6 +63,13 @@ function createScene()
         //cam and background follow player
         camera.position.x = player.position.x;
         background.position.x = player.position.x;
+
+        //check if player is on the endblock
+        for(let i=0;i<endBlockList.length;i++)
+        {
+            if(endBlockList[i].intersectsPoint(player.position))
+                console.log("this is the end...");
+        }
     });
 
     return scene;
@@ -70,6 +78,7 @@ function createScene()
 function loadLevel(stringLevel)
 {
     blockList = [];
+    endBlockList = [];
     var stringLine = stringLevel.split('\n');
 
     var levelHeight = stringLine.length;
@@ -88,7 +97,13 @@ function loadLevel(stringLevel)
             }
             else if(caracter[width] == "x")
                 spawnPosition = new BABYLON.Vector3(width, levelHeight - height, 0);
-            
+            else if(caracter[width] == "e")
+            {
+                var endblock = BABYLON.Mesh.CreateBox('endbox', 1, scene);
+                endblock.position = new BABYLON.Vector3(width, levelHeight - height, 0);
+                endblock.isVisible = false;
+                endBlockList.push(endblock);
+            }
         }
     }
 }
