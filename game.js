@@ -9,7 +9,7 @@ function createScene()
 
     // This creates and positions a free camera (non-mesh)
     var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 2, -8), scene);
-    var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(-2, 1, -2), scene)
+    var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(-2, 1, -2), scene);
     light.intensity = 0.7;
 
     //-------- input --------
@@ -49,7 +49,7 @@ function createScene()
     cube2.position.y = 2;
     cube2.checkCollisions = true;
 
-    loadLevel(stringLevel);
+    loadLevel(stringLevel, scene);
 
     player.position = spawnPosition.clone();
     
@@ -75,7 +75,7 @@ function createScene()
     return scene;
 }
 
-function loadLevel(stringLevel)
+function loadLevel(stringLevel, scene)
 {
     blockList = [];
     endBlockList = [];
@@ -93,13 +93,13 @@ function loadLevel(stringLevel)
             if(caracter[width] == "1")
             {
                 var pos = new BABYLON.Vector3(width,levelHeight - height, 0);
-                blockList.push(buildBlock(pos));
+                blockList.push(buildBlock(pos, scene));
             }
             else if(caracter[width] == "x")
-                spawnPosition = new BABYLON.Vector3(width, levelHeight - height, 0);
+                spawnPosition = new BABYLON.Vector3(width, levelHeight - height, 0); //mal spawnposition
             else if(caracter[width] == "e")
             {
-                var endblock = BABYLON.Mesh.CreateBox('endbox', 1, scene);
+                var endblock = BABYLON.Mesh.CreateBox('endbox', 1, scene); // mal liste endblock
                 endblock.position = new BABYLON.Vector3(width, levelHeight - height, 0);
                 endblock.isVisible = false;
                 endBlockList.push(endblock);
@@ -108,7 +108,7 @@ function loadLevel(stringLevel)
     }
 }
 
-function buildBlock(position)
+function buildBlock(position, scene)
 {
     var columns = 6;
     var rows = 6;
