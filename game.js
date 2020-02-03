@@ -36,19 +36,6 @@ function createScene()
     material.diffuseTexture = new BABYLON.Texture("resources/background_lands.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     background.material = material;
 
-    // boxes
-    var cube = BABYLON.Mesh.CreateBox("crate", 1 , scene);
-    cube.position.z = 0;
-    cube.checkCollisions = true;
-    var materialCube = new BABYLON.StandardMaterial("texturee", scene);
-    materialCube.diffuseTexture = new BABYLON.Texture("resources/Capture2.jpg", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    cube.material = materialCube;
-
-    var cube2 = BABYLON.Mesh.CreateBox("crate", 1 , scene);
-    cube2.position.x = 2;
-    cube2.position.y = 2;
-    cube2.checkCollisions = true;
-
     var endBlockList = new Array();
 
     loadLevel(stringLevel1, scene, endBlockList);
@@ -70,7 +57,11 @@ function createScene()
         for(let i=0;i<endBlockList.length;i++)
         {
             if(endBlockList[i].intersectsPoint(player.position))
+            {
                 console.log("this is the end...");
+                level1 = false;
+            }
+                
         }
     });
 

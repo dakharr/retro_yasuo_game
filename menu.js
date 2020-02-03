@@ -82,6 +82,7 @@ function createSceneMenu()
         if((map["r"] || map["R"]))
         {
             inMenu = false;
+            level1 = true;
         };
     });
 
