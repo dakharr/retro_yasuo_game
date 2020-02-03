@@ -51,7 +51,7 @@ function createScene()
 
     var endBlockList = new Array();
 
-    loadLevel(stringLevel1, scene, endBlockList);
+    loadLevel(stringLevel2, scene, endBlockList);
 
     player.position = spawnPosition.clone();
     
