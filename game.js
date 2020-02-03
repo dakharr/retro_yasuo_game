@@ -1,6 +1,6 @@
 var spawnPosition;
 var blockList;
-var endBlockList;
+
 function createScene()
 {
     // This creates a basic Babylon Scene object (non-mesh)
@@ -49,7 +49,9 @@ function createScene()
     cube2.position.y = 2;
     cube2.checkCollisions = true;
 
-    loadLevel(stringLevel, scene);
+    var endBlockList = new Array();
+
+    loadLevel(stringLevel1, scene, endBlockList);
 
     player.position = spawnPosition.clone();
     
@@ -75,10 +77,9 @@ function createScene()
     return scene;
 }
 
-function loadLevel(stringLevel, scene)
+function loadLevel(stringLevel, scene, endBlockList)
 {
     blockList = [];
-    endBlockList = [];
     var stringLine = stringLevel.split('\n');
 
     var levelHeight = stringLine.length;
@@ -92,15 +93,15 @@ function loadLevel(stringLevel, scene)
         {
             if(caracter[width] == "1")
             {
-                var pos = new BABYLON.Vector3(width,levelHeight - height, 0);
+                var pos = new BABYLON.Vector3(width/2,(levelHeight - height)/2, 0);
                 blockList.push(buildBlock(pos, scene));
             }
             else if(caracter[width] == "x")
-                spawnPosition = new BABYLON.Vector3(width, levelHeight - height, 0); //mal spawnposition
+                spawnPosition = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0); //mal spawnposition
             else if(caracter[width] == "e")
             {
-                var endblock = BABYLON.Mesh.CreateBox('endbox', 1, scene); // mal liste endblock
-                endblock.position = new BABYLON.Vector3(width, levelHeight - height, 0);
+                var endblock = BABYLON.Mesh.CreateBox('endbox', 0.5, scene); // mal liste endblock
+                endblock.position = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0);
                 endblock.isVisible = false;
                 endBlockList.push(endblock);
             }
@@ -119,6 +120,9 @@ function buildBlock(position, scene)
 
     var options = {
         faceUV:faceUV,
+        width: 0.5,
+        height: 0.5,
+        depth: 0.5,
         wrap:true };
 
     var mat = new BABYLON.StandardMaterial("blockmat", scene);

@@ -27,7 +27,9 @@ function createSceneMenu()
     sprite.height = 4;
     sprite.width = 4;
     sprite.position = new BABYLON.Vector3(7,6.5,0);
-    loadLevel(stringLevelIntro, scene);
+
+    var end;
+    loadLevel(stringLevelIntro, scene, end);
     var fountain = BABYLON.Mesh.CreateBox("fountain", 0.5, scene);
     fountain.position = new BABYLON.Vector3(7, 6, -1);
     fountain.isVisible = false;
