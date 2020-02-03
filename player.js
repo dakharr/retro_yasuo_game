@@ -9,7 +9,7 @@ function createPlayer(scene)
 {
     //player entity
     player = BABYLON.MeshBuilder.CreatePlane("player", {width: 1, height: 1}, scene);
-    player.position.z = -0.5;
+    player.position.z = 0;
     player.position.y = 4;
     player.checkCollisions = true;
     player.ellipsoid = new BABYLON.Vector3(0.20, 0.5, 0.5); // collision "box"
@@ -26,7 +26,7 @@ function updatePlayer(map, scene)
 {
     //x deplacement
     xdep = 0;
-    var speed = 0.005;
+    var speed = 0.004;
     var gravity = -0.00002;
     var jumpHeight = 2;
 
