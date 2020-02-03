@@ -1,10 +1,12 @@
 var player;
 var playerSprite;
+var jumpSound;
 
 var grounded = false;
 var vy = 0;
 var xdep;
 var moving = false;
+
 function createPlayer(scene)
 {
     //player entity
@@ -20,6 +22,8 @@ function createPlayer(scene)
     playerSprite = new BABYLON.Sprite("pp", spriteManagerPlayer);
     playerSprite.playAnimation(1, 5, true, 100);
     // playerSprite.playAnimation(16, 23, true, 100);
+
+    jumpSound = new BABYLON.Sound("jump", "resources/yasuo_jump.mp3", scene);
 }
 
 function updatePlayer(map, scene)
@@ -45,6 +49,7 @@ function updatePlayer(map, scene)
     if((map["Z"] || map["z"]) && grounded)
     {
         vy = Math.sqrt(0 - 2*gravity*jumpHeight);
+        jumpSound.play();
     };
     //collision on x axis
     grounded = false;
