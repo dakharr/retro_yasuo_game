@@ -28,7 +28,7 @@ function createPlayer(scene)
     deathSound = new BABYLON.Sound("death1", "resources/yasuo_death1.mp3", scene);
 }
 
-function updatePlayer(map, scene)
+function updatePlayer(map, scene, spawnPosition)
 {
     //x deplacement
     xdep = 0;
@@ -103,7 +103,8 @@ function updatePlayer(map, scene)
     //death check (if player fall out of the map)
     if(player.position.y < -10)
     {
-        player.position = spawnPosition.clone();
+        player.position = spawnPosition;
+        console.log(spawnPosition);
         deathSound.play();
     }
         

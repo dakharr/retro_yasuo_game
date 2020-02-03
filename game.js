@@ -1,7 +1,7 @@
-var spawnPosition;
+//var spawnPosition;
 var blockList;
 
-function createScene()
+function createScene(stringLevel)
 {
     // This creates a basic Babylon Scene object (non-mesh)
     var scene = new BABYLON.Scene(engine);
@@ -37,15 +37,16 @@ function createScene()
     background.material = material;
 
     var endBlockList = new Array();
+    var spawnPoints = new Array();
 
-    loadLevel(stringLevel2, scene, endBlockList);
+    loadLevel(stringLevel, scene, endBlockList, spawnPoints);
 
-    player.position = spawnPosition.clone();
+    player.position = spawnPoints[0].clone();//spawnPoints[0];//spawnPosition.clone();
     
     //update loop
     scene.registerAfterRender(function()
     {
-        updatePlayer(map, scene);
+        updatePlayer(map, scene, spawnPoints[0].clone());
         //move background
         background.material.diffuseTexture.uOffset += xdep/100;
 
@@ -59,7 +60,9 @@ function createScene()
             if(endBlockList[i].intersectsPoint(player.position))
             {
                 console.log("this is the end...");
+                scene2 = createScene(stringLevel2);
                 level1 = false;
+                level2 = true;
             }
                 
         }
@@ -68,7 +71,7 @@ function createScene()
     return scene;
 }
 
-function loadLevel(stringLevel, scene, endBlockList)
+function loadLevel(stringLevel, scene, endBlockList, spawnPoints)
 {
     blockList = [];
     var stringLine = stringLevel.split('\n');
@@ -93,7 +96,10 @@ function loadLevel(stringLevel, scene, endBlockList)
                 blockList.push(buildBlock(pos, scene, 1));
             }
             else if(caracter[width] == "x")
-                spawnPosition = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0); //mal spawnposition
+            {
+                var spawnPosition = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0); //mal spawnposition
+                spawnPoints.push(spawnPosition);
+            }
             else if(caracter[width] == "e")
             {
                 var endblock = BABYLON.Mesh.CreateBox('endbox', 0.5, scene); // mal liste endblock
