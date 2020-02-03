@@ -1,6 +1,7 @@
 var player;
 var playerSprite;
 var jumpSound;
+var deathSound;
 
 var grounded = false;
 var vy = 0;
@@ -24,6 +25,7 @@ function createPlayer(scene)
     // playerSprite.playAnimation(16, 23, true, 100);
 
     jumpSound = new BABYLON.Sound("jump", "resources/yasuo_jump.mp3", scene);
+    deathSound = new BABYLON.Sound("death1", "resources/yasuo_death1.mp3", scene);
 }
 
 function updatePlayer(map, scene)
@@ -100,5 +102,9 @@ function updatePlayer(map, scene)
 
     //death check (if player fall out of the map)
     if(player.position.y < -10)
+    {
         player.position = spawnPosition.clone();
+        deathSound.play();
+    }
+        
 }
