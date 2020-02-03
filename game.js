@@ -94,7 +94,12 @@ function loadLevel(stringLevel, scene, endBlockList)
             if(caracter[width] == "1")
             {
                 var pos = new BABYLON.Vector3(width/2,(levelHeight - height)/2, 0);
-                blockList.push(buildBlock(pos, scene));
+                blockList.push(buildBlock(pos, scene, 0));
+            }
+            if(caracter[width] == "2")
+            {
+                var pos = new BABYLON.Vector3(width/2,(levelHeight - height)/2, 0);
+                blockList.push(buildBlock(pos, scene, 1));
             }
             else if(caracter[width] == "x")
                 spawnPosition = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0); //mal spawnposition
@@ -109,14 +114,14 @@ function loadLevel(stringLevel, scene, endBlockList)
     }
 }
 
-function buildBlock(position, scene)
+function buildBlock(position, scene, textureIndex)
 {
     var columns = 6;
     var rows = 6;
     var faceUV = new Array(6);
 
     for(let i=0;i<6;i++)
-        faceUV[i] = new BABYLON.Vector4(i/columns, 0, (i+1)/columns, 1/rows);
+        faceUV[i] = new BABYLON.Vector4(i/columns, textureIndex/rows, (i+1)/columns, (textureIndex+1)/rows);
 
     var options = {
         faceUV:faceUV,
