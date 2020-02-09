@@ -38,8 +38,9 @@ function createScene(stringLevel)
 
     var endBlockList = new Array();
     var spawnPoints = new Array();
+    var poros = new Array();
 
-    loadLevel(stringLevel, scene, endBlockList, spawnPoints);
+    loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros);
 
     player.position = spawnPoints[0].clone();//spawnPoints[0];//spawnPosition.clone();
     
@@ -47,6 +48,8 @@ function createScene(stringLevel)
     scene.registerAfterRender(function()
     {
         updatePlayer(map, scene, spawnPoints[0].clone());
+        for(let i=0;i<poros.length;i++)
+            poros[i].update();
         //move background
         background.material.diffuseTexture.uOffset += xdep/100;
 
@@ -71,7 +74,7 @@ function createScene(stringLevel)
     return scene;
 }
 
-function loadLevel(stringLevel, scene, endBlockList, spawnPoints)
+function loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros)
 {
     blockList = [];
     var stringLine = stringLevel.split('\n');
@@ -106,6 +109,12 @@ function loadLevel(stringLevel, scene, endBlockList, spawnPoints)
                 endblock.position = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0);
                 endblock.isVisible = false;
                 endBlockList.push(endblock);
+            }
+            else if(caracter[width] == "p")
+            {
+                var poroSpriteManager = new BABYLON.SpriteManager("poroSM", "resources/yasuo_animation.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+                poros.push(new poro(width/2, (levelHeight - height)/2, 3, poroSpriteManager));
+                
             }
         }
     }
