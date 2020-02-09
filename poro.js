@@ -18,12 +18,18 @@ class poro
     update()
     {
         let value = Math.sin((Date.now() - this.startTime) *this.speed)*this.walkDst;
-        this.poro.position.x = this.posx + value;
+        //this.poro.position.x = this.posx + value;
 
         if(value>this.offsetTrigger*this.walkDst)
             this.poro.invertU = true;
         else if(value<-this.offsetTrigger*this.walkDst)
             this.poro.invertU = false;
+
+        //collision
+        if(BABYLON.Vector3.Distance(player.position, this.poro.position)<0.4)
+        {
+            console.log("aaaaaaaaaaaaaaaaaa");
+        }
 
     }
 
