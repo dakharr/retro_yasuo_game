@@ -82,8 +82,10 @@ function createSceneMenu()
     {
         if((map["r"] || map["R"]))
         {
+            music.stop();
             inMenu = false;
             level1 = true;
+            
         };
     });
 
