@@ -60,12 +60,23 @@ function createScene(stringLevel)
         //check if player is on the endblock
         for(let i=0;i<endBlockList.length;i++)
         {
+            levelList = [level1,level2,level3]
+            stringLevelList = [stringLevel,stringLevel2,stringLevel3]
+            sceneList = [scene1,scene2,scene3]
             if(endBlockList[i].intersectsPoint(player.position))
             {
                 console.log("this is the end...");
-                scene2 = createScene(stringLevel2);
-                level1 = false;
-                level2 = true;
+                if (level2==true){
+                    scene3 = createScene(stringLevel3);
+                    level2 = false;
+                    level3 = true;
+                }            
+                else if (level1==true){
+                    scene2 = createScene(stringLevel2);
+                    level1 = false;
+                    level2 = true;
+                }
+
             }
                 
         }

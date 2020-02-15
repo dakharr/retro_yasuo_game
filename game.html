@@ -28,6 +28,7 @@
         <script src="level.js"></script>
         <script src="level1.js"></script>
         <script src="level2.js"></script>
+        <script src="level3.js"></script>
         <script src="levelintro.js"></script>
         <script src="menu.js"></script>
         <script src="player.js"></script>
@@ -41,9 +42,10 @@
         var canvas = document.getElementById("renderCanvas"); // Get the canvas element 
         var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
    
-        var scene = createScene(stringLevel1); //Call the createScene function
-        var scene1 = createSceneMenu();
+        var scene = createSceneMenu(); //Call the createScene function
+        var scene1 = createScene(stringLevel1); 
         var scene2;
+        var scene3;
 
         // Register a render loop to repeatedly render the scene
         var inMenu = true;
@@ -52,11 +54,13 @@
         var level3 = false;
         engine.runRenderLoop(function () {
             if(inMenu)
-                scene1.render();
-            else if(level1)
                 scene.render();
+            else if(level1)
+                scene1.render();
             else if(level2)
                 scene2.render();
+            else if(level3)
+                scene3.render();
         });
 
         // Watch for browser/canvas resize events
