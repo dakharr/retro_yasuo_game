@@ -13,6 +13,9 @@ var playerHealthMax = 2;
 var immortalDelay = 2000; //2s
 var immortalTimer = 0;
 
+var attackDelay = 500;
+var attackTimer = 0;
+
 
 function createPlayer(scene)
 {
@@ -37,7 +40,7 @@ function createPlayer(scene)
     playerHealth = playerHealthMax;
 }
 
-function updatePlayer(map, scene, spawnPosition)
+function updatePlayer(map, scene, spawnPosition, poros)
 {
     //x deplacement
     xdep = 0;
@@ -62,6 +65,13 @@ function updatePlayer(map, scene, spawnPosition)
         vy = Math.sqrt(0 - 2*gravity*jumpHeight);
         jumpSound.play();
     };
+
+    //attack
+    if((map["R"] || map["r"]) && grounded && Date.now()>attackTimer)
+    {
+        attack(scene, poros);
+        attackTimer = Date.now() + attackDelay;
+    }
     //collision on x axis
     grounded = false;
 
@@ -81,7 +91,7 @@ function updatePlayer(map, scene, spawnPosition)
     var ray2 = new BABYLON.Ray(raypos2, new BABYLON.Vector3(0, -1, 0), 0.01);
     var hit2 = scene.pickWithRay(ray2);
 
-    // let rayHelper1 = new BABYLON.RayHelper(ray1);		
+    // let rayHelper1 = new BABYLON.RayHelper(ray1);
     // rayHelper1.show(scene);
     // let rayHelper2 = new BABYLON.RayHelper(ray2);		
     // rayHelper2.show(scene);
@@ -142,4 +152,20 @@ function respawn(spawnPosition)
     console.log(spawnPosition);
     deathSound.play();
     playerHealth = 2;
+}
+
+function attack(scene, poros)
+{
+    var raypos1 = new BABYLON.Vector3(player.position.x, player.position.y, player.position.z);
+    var ray1 = new BABYLON.Ray(raypos1, new BABYLON.Vector3(1, 0, 0), 0.75);
+
+    console.log("attack");
+
+    for(let i=0;i<poros.length;i++)
+    {
+        if(ray1.intersectsMesh(poros[i].poroHitbox).hit)
+        {
+            poros[i].kill();
+        }
+    }
 }
