@@ -91,7 +91,7 @@ function createSceneMenu()
     var start = false;
     var drawPaperDelay = 1000;
     var drawPaperTrigger = false;
-    
+
     //sound
     var music = new BABYLON.Sound("Music", "resources/yasuo_dance.mp3", scene, null, {loop: true, autoplay: true});
     BABYLON.Engine.audioEngine.setGlobalVolume(0.1);

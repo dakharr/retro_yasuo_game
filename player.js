@@ -20,6 +20,9 @@ var immortalTimer = 0;
 var attackDelay = 1000;
 var attackTimer = 0;
 
+var moveDstCount = 0;
+var regenShieldDst = 25;
+
 
 function createPlayer(scene)
 {
@@ -86,17 +89,20 @@ function updatePlayer(map, scene, spawnPosition, poros)
         attackTimer = Date.now() + attackDelay;
     }
 
-    if(map["t"])
-    {
-        regenShield();
-    }
     //collision on x axis
     grounded = false;
 
     //update player position
     var deltatime = engine.getDeltaTime();
-    player.moveWithCollisions(new BABYLON.Vector3(xdep*deltatime,vy*deltatime,0));
+    var finalDstX = xdep*deltatime;
+    player.moveWithCollisions(new BABYLON.Vector3(finalDstX,vy*deltatime,0));
 
+    moveDstCount += finalDstX;
+    if(moveDstCount > regenShieldDst)
+    {
+        moveDstCount = 0;
+        regenShield();
+    }
     //sprite follow player
     playerSprite.position = player.position;
     shieldSprite.position = player.position;
@@ -168,11 +174,11 @@ function hitPlayer(spawnPosition)
 function respawn(spawnPosition)
 {
     player.position = spawnPosition;
-    shieldSprite.isVisible = true;
     console.log("dead!");
     console.log(spawnPosition);
     deathSound.play();
-    playerHealth = 2;
+    regenShield();
+    moveDstCount = 0;
 }
 
 function regenShield()
