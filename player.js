@@ -1,9 +1,12 @@
 var player;
 var playerSprite;
+var shieldSprite;
 var jumpSound;
 var deathSound;
 var hitSound;
 var attackSound;
+var lameSound;
+var regenShieldSound;
 
 var grounded = false;
 var vy = 0;
@@ -34,10 +37,16 @@ function createPlayer(scene)
     playerSprite.playAnimation(1, 5, true, 100);
     // playerSprite.playAnimation(16, 23, true, 100);
 
+    var spriteManagerShield = new BABYLON.SpriteManager("shieldManager", "resources/wind_shield.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    shieldSprite = new BABYLON.Sprite("sh", spriteManagerShield);
+    shieldSprite.playAnimation(0, 5, true, 100);
+
     jumpSound = new BABYLON.Sound("jump", "resources/yasuo_jump.mp3", scene);
     deathSound = new BABYLON.Sound("death1", "resources/yasuo_death1.mp3", scene);
-    hitSound = new BABYLON.Sound("hit1", "resources/yasuo_hit1.mp3", scene);
+    hitSound = new BABYLON.Sound("hit1", "resources/shield_break.mp3", scene);
     attackSound = new BABYLON.Sound("attack", "resources/yasuo_q.mp3", scene);
+    lameSound = new BABYLON.Sound("attacklame", "resources/swing_lame1.mp3", scene);
+    regenShieldSound = new BABYLON.Sound("regenShieldSound", "resources/regen_shield.mp3", scene);
 
     playerHealth = playerHealthMax;
 }
@@ -54,11 +63,13 @@ function updatePlayer(map, scene, spawnPosition, poros)
     {
         xdep = -speed;
         playerSprite.invertU = true;
+        shieldSprite.invertU = true;
     };
     if((map["d"] || map["D"]))
     {
         xdep = speed;
         playerSprite.invertU = false;
+        shieldSprite.invertU = false;
     };
 
     //jump
@@ -74,6 +85,11 @@ function updatePlayer(map, scene, spawnPosition, poros)
         attack(scene, poros);
         attackTimer = Date.now() + attackDelay;
     }
+
+    if(map["t"])
+    {
+        regenShield();
+    }
     //collision on x axis
     grounded = false;
 
@@ -83,6 +99,7 @@ function updatePlayer(map, scene, spawnPosition, poros)
 
     //sprite follow player
     playerSprite.position = player.position;
+    shieldSprite.position = player.position;
 
     //2 ray for more accuracy in the detection of the ground
     var raypos1 = new BABYLON.Vector3(player.position.x+0.1, player.position.y-0.5, player.position.z);
@@ -133,6 +150,7 @@ function hitPlayer(spawnPosition)
     if(immortalTimer<Date.now())
     {
         playerHealth--;
+        shieldSprite.isVisible = false;
         if(playerHealth<=0)
         {
             respawn(spawnPosition)
@@ -150,19 +168,34 @@ function hitPlayer(spawnPosition)
 function respawn(spawnPosition)
 {
     player.position = spawnPosition;
+    shieldSprite.isVisible = true;
     console.log("dead!");
     console.log(spawnPosition);
     deathSound.play();
     playerHealth = 2;
 }
 
+function regenShield()
+{
+    playerHealth = 2;
+    shieldSprite.isVisible = true;
+    regenShieldSound.play();
+}
+
 function attack(scene, poros)
 {
     var raypos1 = new BABYLON.Vector3(player.position.x, player.position.y, player.position.z);
-    var ray1 = new BABYLON.Ray(raypos1, new BABYLON.Vector3(1, 0, 0), 0.75);
+    var rayDir = new BABYLON.Vector3(1, 0, 0);
+
+    if(playerSprite.invertU)
+        rayDir = new BABYLON.Vector3(-1, 0, 0);
+
+    
+    var ray1 = new BABYLON.Ray(raypos1, rayDir, 0.75);
 
     console.log("attack");
     attackSound.play();
+    lameSound.play();
 
     for(let i=0;i<poros.length;i++)
     {
