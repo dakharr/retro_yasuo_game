@@ -64,6 +64,42 @@ function createSceneMenu()
 
     particleSystem.start();
 
+    var paperSpriteM = new BABYLON.SpriteManager("paperManager", "resources/falling_paper.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    var paperSprite = new BABYLON.Sprite("paper", paperSpriteM);
+    paperSprite.position = new BABYLON.Vector3(7, 10, -1);
+    paperSprite.playAnimation(1,5, true, 100);
+    var tpyasSpriteM = new BABYLON.SpriteManager("yassManager", "resources/yasuo_animation.png", 8, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    var tpyasSprite = new BABYLON.Sprite("yass", tpyasSpriteM);
+    tpyasSprite.position = new BABYLON.Vector3(7,5,0);
+    tpyasSprite.size = 2;
+    tpyasSprite.isVisible = false;
+
+
+    var paperZoom = BABYLON.MeshBuilder.CreatePlane("paperzoom", {width: 6, height: 3}, scene);
+    var mat = new BABYLON.StandardMaterial("papermat", scene);
+    mat.diffuseTexture = new BABYLON.Texture("resources/paper.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    mat.diffuseTexture.hasAlpha = true;
+    paperZoom.material = mat;
+    paperZoom.position = new BABYLON.Vector3(7, 6, -2);
+    paperZoom.isVisible = false;
+
+
+    var tpTrigger = false;
+    var tpTrigger2 = false;
+    var tpDelay = 1000;
+    var tpTimer = 0;
+    var start = false;
+    var drawPaperDelay = 1000;
+    var drawPaperTrigger = false;
+    // BABYLON.SceneLoader.Append("./resources/", "tree.glb", scene, function(scene){
+    //     tree = new BABYLON.TransformNode();
+    // });
+    
+    // BABYLON.SceneLoader.ImportMesh("", "./resources/", "tree.glb", scene, function(newMeshes) {
+    //     newMeshes[0].position = new BABYLON.Vector3(5,5,4);
+    //     newMeshes[0].scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
+    // });
+    //tree.position = new BABYLON.Vector3(0,0,0);
     //sound
     var music = new BABYLON.Sound("Music", "resources/yasuo_dance.mp3", scene, null, {loop: true, autoplay: true});
     BABYLON.Engine.audioEngine.setGlobalVolume(0.1);
@@ -75,18 +111,51 @@ function createSceneMenu()
     text1.text = "Press R to start";
     text1.color = "white";
     text1.fontSize = 32;
-    text1.top = 250;
+    text1.top = 300;
     advancedTexture.addControl(text1); 
 
     scene.registerAfterRender(function()
     {
         if((map["r"] || map["R"]))
         {
-            music.stop();
-            inMenu = false;
-            level1 = true;
+            start = true;
             
+            text1.text = "";
+
+            if(drawPaperTrigger)
+            {
+                inMenu = false;
+                level1 = true;
+            }
         };
+
+        if(start)
+            paperSprite.position.y -= 0.01;
+            
+        if(paperSprite.position.y < 6 && !tpTrigger)
+        {
+            music.stop();
+            sprite.playAnimation(6,11, false, 25);
+            particleSystem.stop();
+            tpTimer = Date.now() + tpDelay;
+            tpTrigger = true;
+        }
+
+        if(tpTrigger && !tpTrigger2 && tpTimer < Date.now())
+        {
+            tpyasSprite.isVisible = true;
+            tpyasSprite.playAnimation(30, 42, false, 50);
+            paperSprite.isVisible = false;
+            tpTrigger2 = true;
+            tpTimer = Date.now() + drawPaperDelay;
+        }
+
+        if(tpTrigger && tpTrigger2 && !drawPaperTrigger && tpTimer < Date.now())
+        {
+            paperZoom.isVisible = true;
+            drawPaperTrigger = true;
+            text1.text = "press R to start the great quest";
+        }
     });
 
     
