@@ -36,6 +36,21 @@ function createScene(stringLevel)
     var material = new BABYLON.StandardMaterial("texture1", scene);
     material.diffuseTexture = new BABYLON.Texture("resources/background_lands.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     background.material = material;
+    background.position = new BABYLON.Vector3(0, 4, 1.2);
+
+    var underground_backround = BABYLON.MeshBuilder.CreatePlane("background", {width: 20, height: 20}, scene);
+    var under_mat = new BABYLON.StandardMaterial("texture2", scene);
+    under_mat.diffuseTexture = new BABYLON.Texture("resources/background_underground.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    under_mat.diffuseTexture.hasAlpha = true;
+    underground_backround.material = under_mat;
+    underground_backround.position = new BABYLON.Vector3(0, -8.9, 0.25);
+
+    var first_backround = BABYLON.MeshBuilder.CreatePlane("background", {width: 20, height: 5}, scene);
+    var first_mat = new BABYLON.StandardMaterial("texture3", scene);
+    first_mat.diffuseTexture = new BABYLON.Texture("resources/first_background.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    first_mat.diffuseTexture.hasAlpha = true;
+    first_backround.material = first_mat;
+    first_backround.position = new BABYLON.Vector3(0, 1, 1.1);
 
     var endBlockList = new Array();
     var spawnPoints = new Array();
@@ -52,8 +67,11 @@ function createScene(stringLevel)
         updatePlayer(map, scene, spawnPoints[0].clone(), poros);
         for(let i=0;i<poros.length;i++)
             poros[i].update(spawnPoints[0].clone());
+        
         //move background
-        background.material.diffuseTexture.uOffset += xdep/100;
+        background.material.diffuseTexture.uOffset += trueXDeplacement/100;
+        underground_backround.material.diffuseTexture.uOffset += trueXDeplacement/20;
+        first_backround.material.diffuseTexture.uOffset += trueXDeplacement/30;
 
         //cam and background follow player
         camera.position.x = player.position.x;
@@ -62,8 +80,10 @@ function createScene(stringLevel)
         if(player.position.y - camera.position.y < -1 && camera.position.y > 2)
             camera.position.y-= cameraSpeed * deltatime;
 
-        //camera.position.y = Math.max(player.position.y);
+        //update backgrounds
         background.position.x = player.position.x;
+        underground_backround.position.x = player.position.x;
+        first_backround.position.x = player.position.x;
 
         //check if player is on the endblock
         for(let i=0;i<endBlockList.length;i++)

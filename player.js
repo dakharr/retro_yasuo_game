@@ -23,6 +23,9 @@ var attackTimer = 0;
 var moveDstCount = 0;
 var regenShieldDst = 25;
 
+var lastposx = 0;
+var trueXDeplacement = 0;
+
 
 function createPlayer(scene)
 {
@@ -62,6 +65,8 @@ function updatePlayer(map, scene, spawnPosition, poros)
     var gravity = -0.00002;
     var jumpHeight = 2;
 
+    lastposx = player.position.x;
+
     if((map["q"] || map["Q"]))
     {
         xdep = -speed;
@@ -96,6 +101,8 @@ function updatePlayer(map, scene, spawnPosition, poros)
     var deltatime = engine.getDeltaTime();
     var finalDstX = xdep*deltatime;
     player.moveWithCollisions(new BABYLON.Vector3(finalDstX,vy*deltatime,0));
+
+    trueXDeplacement = player.position.x - lastposx;
 
     moveDstCount += finalDstX;
     if(moveDstCount > regenShieldDst)
