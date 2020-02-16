@@ -9,6 +9,7 @@ function createScene(stringLevel)
 
     // This creates and positions a free camera (non-mesh)
     var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 2, -8), scene);
+    var cameraSpeed = 0.008;
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(-2, 1, -2), scene);
     light.intensity = 0.7;
 
@@ -47,6 +48,7 @@ function createScene(stringLevel)
     //update loop
     scene.registerAfterRender(function()
     {
+        var deltatime = engine.getDeltaTime();
         updatePlayer(map, scene, spawnPoints[0].clone());
         for(let i=0;i<poros.length;i++)
             poros[i].update();
@@ -55,6 +57,12 @@ function createScene(stringLevel)
 
         //cam and background follow player
         camera.position.x = player.position.x;
+        if(player.position.y - camera.position.y > 3)
+            camera.position.y+= cameraSpeed * deltatime;
+        if(player.position.y - camera.position.y < -1 && camera.position.y > 2)
+            camera.position.y-= cameraSpeed * deltatime;
+
+        //camera.position.y = Math.max(player.position.y);
         background.position.x = player.position.x;
 
         //check if player is on the endblock
