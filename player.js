@@ -67,7 +67,7 @@ function updatePlayer(map, scene, spawnPosition, poros)
     };
 
     //attack
-    if((map["R"] || map["r"]) && grounded && Date.now()>attackTimer)
+    if((map[" "] || map[" "]) && grounded && Date.now()>attackTimer)
     {
         attack(scene, poros);
         attackTimer = Date.now() + attackDelay;

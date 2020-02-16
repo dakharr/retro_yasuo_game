@@ -91,15 +91,7 @@ function createSceneMenu()
     var start = false;
     var drawPaperDelay = 1000;
     var drawPaperTrigger = false;
-    // BABYLON.SceneLoader.Append("./resources/", "tree.glb", scene, function(scene){
-    //     tree = new BABYLON.TransformNode();
-    // });
     
-    // BABYLON.SceneLoader.ImportMesh("", "./resources/", "tree.glb", scene, function(newMeshes) {
-    //     newMeshes[0].position = new BABYLON.Vector3(5,5,4);
-    //     newMeshes[0].scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
-    // });
-    //tree.position = new BABYLON.Vector3(0,0,0);
     //sound
     var music = new BABYLON.Sound("Music", "resources/yasuo_dance.mp3", scene, null, {loop: true, autoplay: true});
     BABYLON.Engine.audioEngine.setGlobalVolume(0.1);
