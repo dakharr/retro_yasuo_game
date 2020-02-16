@@ -3,6 +3,7 @@ var playerSprite;
 var jumpSound;
 var deathSound;
 var hitSound;
+var attackSound;
 
 var grounded = false;
 var vy = 0;
@@ -10,10 +11,10 @@ var xdep;
 var moving = false;
 var playerHealth;
 var playerHealthMax = 2;
-var immortalDelay = 2000; //2s
+var immortalDelay = 1000; //2s
 var immortalTimer = 0;
 
-var attackDelay = 500;
+var attackDelay = 1000;
 var attackTimer = 0;
 
 
@@ -36,6 +37,7 @@ function createPlayer(scene)
     jumpSound = new BABYLON.Sound("jump", "resources/yasuo_jump.mp3", scene);
     deathSound = new BABYLON.Sound("death1", "resources/yasuo_death1.mp3", scene);
     hitSound = new BABYLON.Sound("hit1", "resources/yasuo_hit1.mp3", scene);
+    attackSound = new BABYLON.Sound("attack", "resources/yasuo_q.mp3", scene);
 
     playerHealth = playerHealthMax;
 }
@@ -160,6 +162,7 @@ function attack(scene, poros)
     var ray1 = new BABYLON.Ray(raypos1, new BABYLON.Vector3(1, 0, 0), 0.75);
 
     console.log("attack");
+    attackSound.play();
 
     for(let i=0;i<poros.length;i++)
     {
