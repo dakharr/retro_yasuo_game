@@ -51,7 +51,7 @@ function createScene(stringLevel)
         var deltatime = engine.getDeltaTime();
         updatePlayer(map, scene, spawnPoints[0].clone());
         for(let i=0;i<poros.length;i++)
-            poros[i].update();
+            poros[i].update(spawnPoints[0].clone());
         //move background
         background.material.diffuseTexture.uOffset += xdep/100;
 

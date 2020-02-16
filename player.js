@@ -2,11 +2,17 @@ var player;
 var playerSprite;
 var jumpSound;
 var deathSound;
+var hitSound;
 
 var grounded = false;
 var vy = 0;
 var xdep;
 var moving = false;
+var playerHealth;
+var playerHealthMax = 2;
+var immortalDelay = 2000; //2s
+var immortalTimer = 0;
+
 
 function createPlayer(scene)
 {
@@ -26,6 +32,9 @@ function createPlayer(scene)
 
     jumpSound = new BABYLON.Sound("jump", "resources/yasuo_jump.mp3", scene);
     deathSound = new BABYLON.Sound("death1", "resources/yasuo_death1.mp3", scene);
+    hitSound = new BABYLON.Sound("hit1", "resources/yasuo_hit1.mp3", scene);
+
+    playerHealth = playerHealthMax;
 }
 
 function updatePlayer(map, scene, spawnPosition)
@@ -103,9 +112,34 @@ function updatePlayer(map, scene, spawnPosition)
     //death check (if player fall out of the map)
     if(player.position.y < -10)
     {
-        player.position = spawnPosition;
-        console.log(spawnPosition);
-        deathSound.play();
+        respawn(spawnPosition);
     }
-        
+}
+
+function hitPlayer(spawnPosition)
+{
+    if(immortalTimer<Date.now())
+    {
+        playerHealth--;
+        if(playerHealth<=0)
+        {
+            respawn(spawnPosition)
+        }
+        else
+        {
+            hitSound.play();
+            console.log("hit!");
+        }
+        immortalTimer = Date.now() + immortalDelay;
+    }
+    
+}
+
+function respawn(spawnPosition)
+{
+    player.position = spawnPosition;
+    console.log("dead!");
+    console.log(spawnPosition);
+    deathSound.play();
+    playerHealth = 2;
 }

@@ -15,7 +15,7 @@ class poro
         this.offsetTrigger = 0.95;
     }
 
-    update()
+    update(respawnPoint)
     {
         let value = Math.sin((Date.now() - this.startTime) *this.speed)*this.walkDst;
         this.poro.position.x = this.posx + value;
@@ -28,7 +28,7 @@ class poro
         //collision
         if(BABYLON.Vector3.Distance(player.position, this.poro.position)<0.4)
         {
-            console.log("aaaaaaaaaaaaaaaaaa");
+            hitPlayer(respawnPoint);
         }
 
     }
