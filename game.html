@@ -18,6 +18,11 @@
                 height: 100%;
                 touch-action: none;
             }
+
+            @font-face {
+                font-family: 'pixel';
+                src: url('resources/Pixellari.ttf');
+            }
         </style>
 
         <script src="https://preview.babylonjs.com/babylon.js"></script>
@@ -50,8 +55,8 @@
         var scene4;
 
         // Register a render loop to repeatedly render the scene
-        var inMenu = false;
-        var level1 = true;
+        var inMenu = true;
+        var level1 = false;
         var level2 = false;
         var level3 = false;
         var level4 = false;
