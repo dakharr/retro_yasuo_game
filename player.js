@@ -2,9 +2,14 @@ var player;
 var playerSprite;
 var shieldSprite;
 var jumpSound;
+var jumpSound2;
+var jumpSound3;
+var jumpSound4;
 var deathSound;
 var hitSound;
 var attackSound;
+var attackSound2;
+var attackSound3;
 var lameSound;
 var regenShieldSound;
 
@@ -48,9 +53,14 @@ function createPlayer(scene)
     shieldSprite.playAnimation(0, 5, true, 100);
 
     jumpSound = new BABYLON.Sound("jump", "resources/yasuo_jump.mp3", scene);
+    jumpSound2 = new BABYLON.Sound("jump", "resources/yasuo_jump2.mp3", scene);
+    jumpSound3 = new BABYLON.Sound("jump", "resources/yasuo_jump3.mp3", scene);
+    jumpSound4 = new BABYLON.Sound("jump", "resources/yasuo_jump4.mp3", scene);
     deathSound = new BABYLON.Sound("death1", "resources/yasuo_death1.mp3", scene);
     hitSound = new BABYLON.Sound("hit1", "resources/shield_break.mp3", scene);
     attackSound = new BABYLON.Sound("attack", "resources/yasuo_q.mp3", scene);
+    attackSound2 = new BABYLON.Sound("attack", "resources/yasuo_q2.mp3", scene);
+    attackSound3 = new BABYLON.Sound("attack", "resources/yasuo_q3.mp3", scene);
     lameSound = new BABYLON.Sound("attacklame", "resources/swing_lame1.mp3", scene);
     regenShieldSound = new BABYLON.Sound("regenShieldSound", "resources/regen_shield.mp3", scene);
 
@@ -84,7 +94,8 @@ function updatePlayer(map, scene, spawnPosition, poros)
     if((map["Z"] || map["z"]) && grounded)
     {
         vy = Math.sqrt(0 - 2*gravity*jumpHeight);
-        jumpSound.play();
+        playRandomJumpSound();
+        
     };
 
     //attack
@@ -207,7 +218,7 @@ function attack(scene, poros)
     var ray1 = new BABYLON.Ray(raypos1, rayDir, 0.75);
 
     console.log("attack");
-    attackSound.play();
+    playRandomQSound();
     lameSound.play();
 
     for(let i=0;i<poros.length;i++)
@@ -217,4 +228,44 @@ function attack(scene, poros)
             poros[i].kill();
         }
     }
+}
+
+function playRandomJumpSound()
+{
+    let value = getRandomInt(4);
+    switch(value)
+    {
+        case 0:
+            jumpSound.play();
+            break;
+        case 1:
+            jumpSound2.play();
+            break;
+        case 2:
+            jumpSound3.play();
+            break;
+        default:
+            jumpSound4.play();
+    }
+}
+
+function playRandomQSound()
+{
+    let value = getRandomInt(4);
+    switch(value)
+    {
+        case 0:
+            attackSound.play();
+            break;
+        case 1:
+            attackSound2.play();
+            break;
+        default:
+            attackSound3.play();
+    }
+}
+
+function getRandomInt(max)
+{
+    return Math.floor(Math.random() * Math.floor(max));
 }

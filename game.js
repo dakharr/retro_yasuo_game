@@ -82,6 +82,7 @@ function createScene(stringLevel)
 
         //update backgrounds
         background.position.x = player.position.x;
+        background.position.y = camera.position.y + 4;
         underground_backround.position.x = player.position.x;
         first_backround.position.x = player.position.x;
 
