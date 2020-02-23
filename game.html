@@ -29,6 +29,7 @@
         <script src="level1.js"></script>
         <script src="level2.js"></script>
         <script src="level3.js"></script>
+        <script src="level4.js"></script>
         <script src="levelintro.js"></script>
         <script src="menu.js"></script>
         <script src="player.js"></script>
@@ -46,12 +47,14 @@
         var scene1 = createScene(stringLevel1); 
         var scene2;
         var scene3;
+        var scene4;
 
         // Register a render loop to repeatedly render the scene
         var inMenu = true;
         var level1 = false;
         var level2 = false;
         var level3 = false;
+        var level4 = false;
         engine.runRenderLoop(function () {
             if(inMenu)
                 scene.render();
@@ -61,6 +64,8 @@
                 scene2.render();
             else if(level3)
                 scene3.render();
+            else if(level4)
+                scene4.render();
         });
 
         // Watch for browser/canvas resize events
