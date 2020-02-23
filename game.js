@@ -8,8 +8,8 @@ function createScene(stringLevel)
     scene.collisionsEnabled = true;
 
     // This creates and positions a free camera (non-mesh)
-    var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 2, -8), scene);
-    var cameraSpeed = 0.008;
+    var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 3.5, -8), scene);
+    var cameraSpeed = 0.01;
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(-2, 1, -2), scene);
     light.intensity = 0.7;
 
@@ -75,10 +75,10 @@ function createScene(stringLevel)
 
         //cam and background follow player
         camera.position.x = player.position.x;
-        if(player.position.y - camera.position.y > 3)
-            camera.position.y+= cameraSpeed * deltatime;
-        if(player.position.y - camera.position.y < -1 && camera.position.y > 2)
-            camera.position.y-= cameraSpeed * deltatime;
+        if(player.position.y - camera.position.y > 1)
+            camera.position.y = player.position.y-1;
+        if(player.position.y - camera.position.y < 0 && camera.position.y > 3.5)
+            camera.position.y = player.position.y;
 
         //update backgrounds
         background.position.x = player.position.x;
