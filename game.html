@@ -48,35 +48,26 @@
         var canvas = document.getElementById("renderCanvas"); // Get the canvas element 
         var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
    
-        var scene = createSceneMenu(); //Call the createScene function
-        var scene1 = createScene(stringLevel1); 
-        var scene2;
-        var scene3;
-        var scene4;
+        var gameScene = createSceneMenu();
 
-        // Register a render loop to repeatedly render the scene
-        var inMenu = true;
-        var level1 = false;
-        var level2 = false;
-        var level3 = false;
-        var level4 = false;
+        var levelCount = 0;
+        var stringLevelList = [stringLevel1,stringLevel2,stringLevel3,stringLevel4]
+
         engine.runRenderLoop(function () {
-            if(inMenu)
-                scene.render();
-            else if(level1)
-                scene1.render();
-            else if(level2)
-                scene2.render();
-            else if(level3)
-                scene3.render();
-            else if(level4)
-                scene4.render();
+            gameScene.render();
         });
 
         // Watch for browser/canvas resize events
         window.addEventListener("resize", function () { 
                 engine.resize();
         });
+
+        function loadNextLevel()
+        {
+            gameScene.dispose();
+            gameScene = createScene(stringLevelList[levelCount]);
+            levelCount++;
+        }
     </script>
 
    </body>

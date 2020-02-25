@@ -36,8 +36,6 @@ function createPlayer(scene)
 {
     //player entity
     player = BABYLON.MeshBuilder.CreatePlane("player", {width: 1, height: 1}, scene);
-    player.position.z = 0;
-    player.position.y = 4;
     player.checkCollisions = true;
     player.ellipsoid = new BABYLON.Vector3(0.20, 0.5, 0.5); // collision "box"
     player.isVisible = false;
@@ -65,6 +63,7 @@ function createPlayer(scene)
     regenShieldSound = new BABYLON.Sound("regenShieldSound", "resources/regen_shield.mp3", scene);
 
     playerHealth = playerHealthMax;
+    playerSetPosition(new BABYLON.Vector3(0, 4, 0));
 }
 
 function updatePlayer(map, scene, spawnPosition, poros)
@@ -191,9 +190,10 @@ function hitPlayer(spawnPosition)
 
 function respawn(spawnPosition)
 {
-    player.position = spawnPosition;
+    playerSetPosition(spawnPosition);
     console.log("dead!");
     console.log(spawnPosition);
+    console.log(player.position);
     deathSound.play();
     regenShield();
     moveDstCount = 0;
@@ -268,4 +268,19 @@ function playRandomQSound()
 function getRandomInt(max)
 {
     return Math.floor(Math.random() * Math.floor(max));
+}
+
+function playerSetPosition(pos)
+{
+    player.position.x = pos.x;
+    player.position.y = pos.y;
+    player.position.z = pos.z;
+
+    playerSprite.position.x = pos.x;
+    playerSprite.position.y = pos.y;
+    playerSprite.position.z = pos.z;
+
+    shieldSprite.position.x = pos.x;
+    shieldSprite.position.y = pos.y;
+    shieldSprite.position.z = pos.z;
 }

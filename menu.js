@@ -126,10 +126,7 @@ function createSceneMenu()
             text1.text = "";
 
             if(drawPaperTrigger)
-            {
-                inMenu = false;
-                level1 = true;
-            }
+                loadNextLevel();
         };
 
         if(start)

@@ -1,4 +1,3 @@
-//var spawnPosition;
 var blockList;
 
 function createScene(stringLevel)
@@ -58,7 +57,8 @@ function createScene(stringLevel)
 
     loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros);
 
-    player.position = spawnPoints[0].clone();//spawnPoints[0];//spawnPosition.clone();
+    //player.position = spawnPoints[0].clone();//spawnPoints[0];//spawnPosition.clone();
+    playerSetPosition(spawnPoints[0].clone());
     
     //update loop
     scene.registerAfterRender(function()
@@ -89,30 +89,11 @@ function createScene(stringLevel)
         //check if player is on the endblock
         for(let i=0;i<endBlockList.length;i++)
         {
-            levelList = [level1,level2,level3,level4]
-            stringLevelList = [stringLevel,stringLevel2,stringLevel3,stringLevel4]
-            sceneList = [scene1,scene2,scene3,scene4]
             if(endBlockList[i].intersectsPoint(player.position))
             {
                 console.log("this is the end...");
-                if (level3==true){
-                    scene4 = createScene(stringLevel4);
-                    level3 = false;
-                    level4 = true;
-                }
-                else if (level2==true){
-                    scene3 = createScene(stringLevel3);
-                    level2 = false;
-                    level3 = true;
-                }            
-                else if (level1==true){
-                    scene2 = createScene(stringLevel2);
-                    level1 = false;
-                    level2 = true;
-                }
-
+                loadNextLevel();
             }
-                
         }
     });
 
