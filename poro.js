@@ -14,7 +14,8 @@ class poro
 
         this.poro.playAnimation(12, 17, true, 100);
 
-        this.startTime = Date.now();
+        this.randomOffset = Math.random()*10000;
+        this.startTime = Date.now() + this.randomOffset;
         this.speed = 0.001;
         this.offsetTrigger = 0.95;
         this.dead = false;
