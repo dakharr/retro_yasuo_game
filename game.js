@@ -138,7 +138,7 @@ function loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros)
             }
             else if(caracter[width] == "p")
             {
-                var poroSpriteManager = new BABYLON.SpriteManager("poroSM", "resources/yasuo_animation.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+                var poroSpriteManager = new BABYLON.SpriteManager("poroSM", "resources/poro.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
                 poros.push(new poro(width/2, (levelHeight - height)/2, 3, poroSpriteManager, scene));
                 
             }

@@ -12,7 +12,7 @@ class poro
         this.poroHitbox.isVisible = false;
         this.poroHitbox.isPickable = true;
 
-        this.poro.playAnimation(16, 23, true, 100);
+        this.poro.playAnimation(12, 17, true, 100);
 
         this.startTime = Date.now();
         this.speed = 0.001;
