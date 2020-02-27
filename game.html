@@ -68,8 +68,15 @@
         function loadNextLevel()
         {
             gameScene.dispose();
-            gameScene = createScene(stringLevelList[levelCount]);
-            levelCount++;
+            if(levelCount >= stringLevelList)
+            {
+                //placeholder moche
+            }
+            else
+            {
+                gameScene = createScene(stringLevelList[levelCount]);
+                levelCount++;
+            }
         }
     </script>
 

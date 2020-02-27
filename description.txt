@@ -1,0 +1,11 @@
+Yasuo Game
+
+Synopsis:
+Vous devez aider yasuo à rejoindre le concert de DJ Sona qui est l'endroit où aller. 
+Vous allez devoir bravez les dangereux fossé et les poros de runeterra.
+
+Touches:
+
+qd - déplacement gauche droite
+z - saut
+spacebar - attaque
