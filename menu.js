@@ -96,6 +96,13 @@ function createSceneMenu()
     var music = new BABYLON.Sound("Music", "resources/yasuo_menu.mp3", scene, null, {loop: true, autoplay: true});
     BABYLON.Engine.audioEngine.setGlobalVolume(0.1);
 
+    // background
+    var background = BABYLON.MeshBuilder.CreatePlane("background", {width: 20, height: 20}, scene);
+    var material = new BABYLON.StandardMaterial("texture1", scene);
+    material.diffuseTexture = new BABYLON.Texture("resources/background_lands.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    background.material = material;
+    background.position = new BABYLON.Vector3(5, 12, 1.2);
+
     // GUI
     var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("jUI");
 
