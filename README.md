@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Yasuo game
 
 ![yasuo logo](resources/chibi_yasuo.jpg)
@@ -7,7 +6,7 @@
 
 Vous devez aider yasuo à rejoindre le concert de DJ Sona qui est **l'endroit où aller**. 
 
-Vous allez devoir braver les collines vallonées de ionia et ses dangereux poros.
+Vous allez devoir bravez les collines vallonées de ionia et ses dangereux poros.
 
 Bon jeu ! 
 
@@ -26,6 +25,3 @@ spacebar | attaque
 **:musical_note: Pensez à activer le son avant de démarrer le jeu :musical_note:**
 
 ![GitHub Logo](resources/warning.PNG)
-=======
-# gow-laudienp
->>>>>>> bac389e1a8d198cd805bc336114812714f4a4a14
