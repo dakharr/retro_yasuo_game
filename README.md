@@ -1,8 +1,10 @@
-# Yasuo game
+# :suspect: Yasuo game
+
+![yasuo logo](resources/chibi_yasuo.jpg)
 
 ## Synopsis
 
-Vous devez aider yasuo à rejoindre le concert de DJ Sona qui est l'endroit où aller. 
+Vous devez aider yasuo à rejoindre le concert de DJ Sona qui est **l'endroit où aller**. 
 
 Vous allez devoir bravez les collines vallonées de ionia et ses dangereux poros.
 
@@ -19,3 +21,5 @@ spacebar | attaque
 ## :rotating_light: Warning :rotating_light:
 
 **Pensez à activer le son avant de démarrer le jeu**
+
+![GitHub Logo](resources/warning.PNG)
