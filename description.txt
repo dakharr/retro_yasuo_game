@@ -9,3 +9,5 @@ Touches:
 qd - déplacement gauche droite
 z - saut
 spacebar - attaque
+
+/!\ pensez à activer le son avant de démarrer /!\
