@@ -22,8 +22,6 @@ spacebar | attaque
 
 ## :rotating_light: Warning :rotating_light:
 
-**Pensez à activer le son avant de démarrer le jeu**
+**:musical_note: Pensez à activer le son avant de démarrer le jeu :musical_note:**
 
 ![GitHub Logo](resources/warning.PNG)
-
-*on a mis plein de sons :musical_note: :musical_note: :musical_note:*
