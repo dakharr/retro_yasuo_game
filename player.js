@@ -14,6 +14,9 @@ var lameSound;
 var regenShieldSound;
 
 var grounded = false;
+var jump = false;
+var extendJumpTimer = 0;
+var extendJumpTime = 100;
 var vy = 0;
 var xdep;
 var moving = false;
@@ -90,11 +93,11 @@ function updatePlayer(map, scene, spawnPosition, poros)
     };
 
     //jump
-    if((map["Z"] || map["z"]) && grounded)
+    if((map["Z"] || map["z"]) && (grounded || (extendJumpTimer + extendJumpTime > Date.now() )) && !jump)
     {
         vy = Math.sqrt(0 - 2*gravity*jumpHeight);
         playRandomJumpSound();
-        
+        jump = true;
     };
 
     //attack
@@ -142,6 +145,8 @@ function updatePlayer(map, scene, spawnPosition, poros)
     {
         vy = 0;
         grounded = true;
+        extendJumpTimer = Date.now();
+        jump = false;
     }
     else
     {
