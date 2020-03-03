@@ -19,6 +19,10 @@ class poro
         this.speed = 0.001;
         this.offsetTrigger = 0.95;
         this.dead = false;
+
+        //set orientation of the sprite
+        let sin = Math.sin((Date.now() - this.startTime) *this.speed);
+        this.poro.invertU = !(sin<0);
     }
 
     update(respawnPoint)
