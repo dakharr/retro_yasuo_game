@@ -30,6 +30,7 @@
         <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
         <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
         <script src="poro.js"></script>
+        <script src="finalLevel.js"></script>
         <script src="level.js"></script>
         <script src="level1.js"></script>
         <script src="level2.js"></script>
@@ -52,8 +53,8 @@
         var canvas = document.getElementById("renderCanvas"); // Get the canvas element 
         var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
    
-        var gameScene = createSceneMenu();
-        //var gameScene = createScenePlaceholder();
+        //var gameScene = createSceneMenu();
+        var gameScene = specialScene();
 
         var levelCount = 0;
         var stringLevelList = [stringLevel1,stringLevel2,stringLevel3,stringLevel4,stringLevel5,stringLevel6,stringLevel7]
