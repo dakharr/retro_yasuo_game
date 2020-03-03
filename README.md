@@ -6,7 +6,7 @@
 
 Vous devez aider yasuo à rejoindre le concert de DJ Sona qui est **l'endroit où aller**. 
 
-Vous allez devoir braver les collines vallonées de ionia et ses dangereux poros.
+Vous allez devoir bravez les collines vallonées de ionia et ses dangereux poros.
 
 Bon jeu ! 
 
@@ -20,8 +20,6 @@ spacebar | attaque
 
 *(pour un clavier azerty)*
 
-## :rotating_light: Warning :rotating_light:
+## Le jeu
 
-**:musical_note: Pensez à activer le son avant de démarrer le jeu :musical_note:**
-
-![GitHub Logo](resources/warning.PNG)
+le jeu est disponible sur ce lien : https://dakharr.itch.io/yasuo

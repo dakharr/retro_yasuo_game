@@ -211,6 +211,13 @@ function attack(scene, poros)
     var raypos1 = new BABYLON.Vector3(player.position.x, player.position.y, player.position.z);
     var rayDir = new BABYLON.Vector3(1, 0, 0);
 
+    playerSprite.playAnimation(8, 9, false, 100, 
+        function(){
+            //animation update
+            playerSprite.playAnimation(1, 5, true, 100);
+            moving = false;
+        });
+
     if(playerSprite.invertU)
         rayDir = new BABYLON.Vector3(-1, 0, 0);
 
