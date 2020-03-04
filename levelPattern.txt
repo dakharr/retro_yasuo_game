@@ -1,5 +1,6 @@
 0: vide
-1: block
+1: block avec herbe
+2: block
 x: spawnPoint (one per level)
 e: endPoint (invisible cube who trigger the end of the level)
 p: poro (ennemies)
@@ -7,3 +8,12 @@ p: poro (ennemies)
 grosse zone de trigger pour ne pas tomber
 les controles
 ajouter un 
+
+instance pour les blocks
+revoir les levels
+l'animation de l'attaque
+le poro qui vole
+le level final
+l'éditeur
+tuto avec des panneaux pour indiquer des trucs
+indicateurs de fin de niveau
