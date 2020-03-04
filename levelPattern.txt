@@ -17,3 +17,4 @@ le level final
 l'éditeur
 tuto avec des panneaux pour indiquer des trucs
 indicateurs de fin de niveau
+taille du texte
