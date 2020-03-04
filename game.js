@@ -1,4 +1,3 @@
-var blockList;
 
 function createScene(stringLevel)
 {
@@ -102,7 +101,6 @@ function createScene(stringLevel)
 
 function loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros)
 {
-    blockList = [];
     var stringLine = stringLevel.split('\n');
 
     var levelHeight = stringLine.length;
@@ -117,12 +115,12 @@ function loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros)
             if(caracter[width] == "1")
             {
                 var pos = new BABYLON.Vector3(width/2,(levelHeight - height)/2, 0);
-                blockList.push(buildBlock(pos, scene, 0));
+                buildBlock(pos, scene, 0);
             }
             if(caracter[width] == "2")
             {
                 var pos = new BABYLON.Vector3(width/2,(levelHeight - height)/2, 0);
-                blockList.push(buildBlock(pos, scene, 1));
+                buildBlock(pos, scene, 1);
             }
             else if(caracter[width] == "x")
             {
