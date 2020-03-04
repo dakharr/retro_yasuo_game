@@ -1,4 +1,3 @@
-
 function createScene(stringLevel)
 {
     // This creates a basic Babylon Scene object (non-mesh)
@@ -7,7 +6,6 @@ function createScene(stringLevel)
 
     // This creates and positions a free camera (non-mesh)
     var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 3.5, -8), scene);
-    var cameraSpeed = 0.01;
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(-2, 1, -2), scene);
     light.intensity = 0.7;
 
@@ -53,6 +51,7 @@ function createScene(stringLevel)
     var endBlockList = new Array();
     var spawnPoints = new Array();
     var poros = new Array();
+
 
     loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros);
 
@@ -106,6 +105,9 @@ function loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros)
     var levelHeight = stringLine.length;
     var levelWidth = stringLine[0].split(' ').length;
 
+    //init blocks
+    var blockList = initOriginalsBlock(scene);
+
     for(let height=0; height<levelHeight;height++)
     {
         var caracter = stringLine[height].split(' ');
@@ -115,12 +117,12 @@ function loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros)
             if(caracter[width] == "1")
             {
                 var pos = new BABYLON.Vector3(width/2,(levelHeight - height)/2, 0);
-                buildBlock(pos, scene, 0);
+                instanceBlock(pos, blockList[0]);
             }
             if(caracter[width] == "2")
             {
                 var pos = new BABYLON.Vector3(width/2,(levelHeight - height)/2, 0);
-                buildBlock(pos, scene, 1);
+                instanceBlock(pos, blockList[1]);
             }
             else if(caracter[width] == "x")
             {
@@ -169,4 +171,21 @@ function buildBlock(position, scene, textureIndex)
     newblock.material = mat;
 
     return newblock;
+}
+
+function instanceBlock(position, block)
+{
+    var instance = block.createInstance("blockInstance");
+    instance.position = position;
+    instance.checkCollisions = true;
+}
+
+function initOriginalsBlock(scene)
+{
+    var blockList = Array();
+
+    for(let i=0;i<2;i++)
+        blockList.push(buildBlock(new BABYLON.Vector3(0,0,0), scene, i));
+
+    return blockList;
 }
