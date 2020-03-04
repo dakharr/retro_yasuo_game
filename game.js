@@ -151,9 +151,10 @@ function buildBlock(position, scene, textureIndex)
     var columns = 6;
     var rows = 6;
     var faceUV = new Array(6);
+    var textureOffset = 0.001; // pour fix les le clipping de la texture
 
     for(let i=0;i<6;i++)
-        faceUV[i] = new BABYLON.Vector4(i/columns, textureIndex/rows, (i+1)/columns, (textureIndex+1)/rows);
+        faceUV[i] = new BABYLON.Vector4(i/columns + textureOffset, textureIndex/rows + textureOffset, (i+1)/columns - textureOffset, (textureIndex+1)/rows - textureOffset);
 
     var options = {
         faceUV:faceUV,
