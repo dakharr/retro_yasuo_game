@@ -9,12 +9,11 @@ grosse zone de trigger pour ne pas tomber
 les controles
 ajouter un 
 
-instance pour les blocks
+instance pour les blocks  OK
 revoir les levels
 l'animation de l'attaque
 le poro qui vole
 le level final
 l'éditeur
 tuto avec des panneaux pour indiquer des trucs
-indicateurs de fin de niveau
-taille du texte
+indicateurs de fin de niveau   OK

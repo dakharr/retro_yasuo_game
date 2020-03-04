@@ -111,16 +111,16 @@ function createSceneMenu()
     text1.fontFamily = "pixel";
     text1.color = "white";
     text1.fontSize = 32;
-    text1.top = 300;
+    text1.top = "35%";
     advancedTexture.addControl(text1); 
 
     var textPaper = new BABYLON.GUI.TextBlock();
     textPaper.text = "";
     textPaper.fontFamily = "pixel";
     textPaper.color = "black";
-    textPaper.fontSize = 32;
+    textPaper.fontSize = "6%";
     textPaper.top = 0;
-    textPaper.left = -200;
+    textPaper.paddingRight = "22%";
 
     advancedTexture.addControl(textPaper);
 
@@ -160,7 +160,7 @@ function createSceneMenu()
         if(tpTrigger && tpTrigger2 && !drawPaperTrigger && tpTimer < Date.now())
         {
             paperZoom.isVisible = true;
-            textPaper.text = "DJ Sona concert is the place to be !";
+            textPaper.text = "DJ Sona concert \nis the place to be !";
             drawPaperTrigger = true;
             text1.text = "press R to start the great quest";
         }
