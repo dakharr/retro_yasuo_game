@@ -2,7 +2,7 @@
 1: block avec herbe
 2: block
 x: spawnPoint (one per level)
-e: endPoint (invisible cube who trigger the end of the level)
+e: endPoint sword (only one per level)
 p: poro (ennemies)
 
 grosse zone de trigger pour ne pas tomber
