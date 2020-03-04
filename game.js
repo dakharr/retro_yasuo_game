@@ -49,11 +49,12 @@ function createScene(stringLevel)
     first_backround.position = new BABYLON.Vector3(0, 1, 1.1);
 
     var endBlockList = new Array();
+    var endBlock = null;
     var spawnPoints = new Array();
     var poros = new Array();
 
 
-    loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros);
+    endBlock = loadLevel(stringLevel, scene, spawnPoints, poros);
 
     //player.position = spawnPoints[0].clone();//spawnPoints[0];//spawnPosition.clone();
     playerSetPosition(spawnPoints[0].clone());
@@ -85,20 +86,35 @@ function createScene(stringLevel)
         first_backround.position.x = player.position.x;
 
         //check if player is on the endblock
-        for(let i=0;i<endBlockList.length;i++)
+        // for(let i=0;i<endBlockList.length;i++)
+        // {
+        //     if(endBlockList[i].intersectsPoint(player.position))
+        //     {
+        //         console.log("this is the end...");
+        //         loadNextLevel();
+        //     }
+        // }
+
+        //new endlevel checking
+        if(endBlock == null)
         {
-            if(endBlockList[i].intersectsPoint(player.position))
+            console.error("ya pas de block fin de niveau !!!");
+        }
+        else
+        {
+            if(BABYLON.Vector3.Distance(player.position, endBlock.position) < 1)
             {
                 console.log("this is the end...");
                 loadNextLevel();
             }
         }
+        
     });
 
     return scene;
 }
 
-function loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros)
+function loadLevel(stringLevel, scene, spawnPoints, poros)
 {
     var stringLine = stringLevel.split('\n');
 
@@ -107,6 +123,7 @@ function loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros)
 
     //init blocks
     var blockList = initOriginalsBlock(scene);
+    var endBlock = null;
 
     for(let height=0; height<levelHeight;height++)
     {
@@ -131,10 +148,15 @@ function loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros)
             }
             else if(caracter[width] == "e")
             {
-                var endblock = BABYLON.Mesh.CreateBox('endbox', 0.5, scene); // mal liste endblock
-                endblock.position = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0);
-                endblock.isVisible = false;
-                endBlockList.push(endblock);
+                var swordSpriteManager = new BABYLON.SpriteManager("swordSM", "resources/sword.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+                var swordSprite = new BABYLON.Sprite("sword", swordSpriteManager);
+                swordSprite.playAnimation(0,4, true, 100);
+                swordSprite.position = new BABYLON.Vector3(width/2, (levelHeight - height)/2 + 0.25, 0);
+                //var endblock = BABYLON.Mesh.CreateBox('endbox', 0.5, scene); // mal liste endblock
+                //endblock.position = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0);
+                //endblock.isVisible = false;
+                //endBlockList.push(endblock);
+                endBlock = swordSprite;
             }
             else if(caracter[width] == "p")
             {
@@ -144,9 +166,11 @@ function loadLevel(stringLevel, scene, endBlockList, spawnPoints, poros)
             }
         }
     }
+
+    return endBlock;
 }
 
-function buildBlock(position, scene, textureIndex)
+function buildBlock(scene, textureIndex)
 {
     var columns = 6;
     var rows = 6;
@@ -167,8 +191,7 @@ function buildBlock(position, scene, textureIndex)
     var atlas = new BABYLON.Texture("resources/atlas.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     mat.diffuseTexture = atlas;
     var newblock = BABYLON.MeshBuilder.CreateBox('box', options, scene);
-    newblock.position = position;
-    newblock.checkCollisions = true;
+    newblock.position = new BABYLON.Vector3(0, -100, 0);
     newblock.material = mat;
 
     return newblock;
@@ -186,7 +209,7 @@ function initOriginalsBlock(scene)
     var blockList = Array();
 
     for(let i=0;i<2;i++)
-        blockList.push(buildBlock(new BABYLON.Vector3(0,0,0), scene, i));
+        blockList.push(buildBlock(scene, i));
 
     return blockList;
 }
