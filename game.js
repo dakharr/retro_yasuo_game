@@ -141,6 +141,11 @@ function loadLevel(stringLevel, scene, spawnPoints, poros)
                 var pos = new BABYLON.Vector3(width/2,(levelHeight - height)/2, 0);
                 instanceBlock(pos, blockList[1]);
             }
+            if(caracter[width] == "3")
+            {
+                var pos = new BABYLON.Vector3(width/2,(levelHeight - height)/2, 0);
+                instanceBlock(pos, blockList[2]);
+            }
             else if(caracter[width] == "x")
             {
                 var spawnPosition = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0); //mal spawnposition
@@ -208,7 +213,7 @@ function initOriginalsBlock(scene)
 {
     var blockList = Array();
 
-    for(let i=0;i<2;i++)
+    for(let i=0;i<3;i++)
         blockList.push(buildBlock(scene, i));
 
     return blockList;
