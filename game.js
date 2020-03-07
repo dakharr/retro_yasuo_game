@@ -48,7 +48,6 @@ function createScene(stringLevel)
     first_backround.material = first_mat;
     first_backround.position = new BABYLON.Vector3(0, 1, 1.1);
 
-    var endBlockList = new Array();
     var endBlock = null;
     var spawnPoints = new Array();
     var poros = new Array();
@@ -56,7 +55,6 @@ function createScene(stringLevel)
 
     endBlock = loadLevel(stringLevel.level, scene, spawnPoints, poros);
 
-    //player.position = spawnPoints[0].clone();//spawnPoints[0];//spawnPosition.clone();
     playerSetPosition(spawnPoints[0].clone());
 
     //text
@@ -75,17 +73,15 @@ function createScene(stringLevel)
     {
         var deltatime = engine.getDeltaTime();
         updatePlayer(map, scene, spawnPoints[0].clone(), poros);
-        
+
         for(let i=0;i<poros.length;i++)
             poros[i].update(spawnPoints[0].clone());
 
 
         //fading name level
-        if(fadingDelay < Date.now() && text1.alpha > 0)
+        if(text1.alpha != 0 && fadingDelay < Date.now())
         {
-            text1.alpha = text1.alpha-0.001*deltatime;
-            if(text1.alpha < 0)
-                text1.alpha = 0;
+            text1.alpha = 0;
         }
         
         //move background
