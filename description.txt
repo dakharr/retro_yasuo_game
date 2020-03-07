@@ -1,8 +1,8 @@
-Yasuo Game
+﻿Yasuo Game
 
 Synopsis:
-Vous devez aider yasuo à rejoindre le concert de DJ Sona qui est l'endroit où aller. 
-Vous allez devoir braver les dangereux fossé et les poros de runeterra.
+Vous devez aider Yasuo à rejoindre le concert de DJ Sona qui est l'endroit où aller. 
+Vous allez devoir braver les dangereux fossés et les poros de Runeterra.
 
 Touches:
 
