@@ -75,6 +75,7 @@ function createScene(stringLevel)
     {
         var deltatime = engine.getDeltaTime();
         updatePlayer(map, scene, spawnPoints[0].clone(), poros);
+        
         for(let i=0;i<poros.length;i++)
             poros[i].update(spawnPoints[0].clone());
 
@@ -82,7 +83,7 @@ function createScene(stringLevel)
         //fading name level
         if(fadingDelay < Date.now() && text1.alpha > 0)
         {
-            text1.alpha = text1.alpha-0.001*engine.getDeltaTime();
+            text1.alpha = text1.alpha-0.001*deltatime;
             if(text1.alpha < 0)
                 text1.alpha = 0;
         }
