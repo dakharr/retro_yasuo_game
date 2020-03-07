@@ -54,10 +54,21 @@ function createScene(stringLevel)
     var poros = new Array();
 
 
-    endBlock = loadLevel(stringLevel, scene, spawnPoints, poros);
+    endBlock = loadLevel(stringLevel.level, scene, spawnPoints, poros);
 
     //player.position = spawnPoints[0].clone();//spawnPoints[0];//spawnPosition.clone();
     playerSetPosition(spawnPoints[0].clone());
+
+    //text
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("jUI");
+    var fadingDelay = 2500 + Date.now();
+    var text1 = new BABYLON.GUI.TextBlock();
+    text1.text = stringLevel.name;
+    text1.fontFamily = "pixel";
+    text1.color = "white";
+    text1.fontSize = 32;
+    text1.top = 0;
+    advancedTexture.addControl(text1); 
     
     //update loop
     scene.registerAfterRender(function()
@@ -66,6 +77,15 @@ function createScene(stringLevel)
         updatePlayer(map, scene, spawnPoints[0].clone(), poros);
         for(let i=0;i<poros.length;i++)
             poros[i].update(spawnPoints[0].clone());
+
+
+        //fading name level
+        if(fadingDelay < Date.now() && text1.alpha > 0)
+        {
+            text1.alpha = text1.alpha-0.001*engine.getDeltaTime();
+            if(text1.alpha < 0)
+                text1.alpha = 0;
+        }
         
         //move background
         background.material.diffuseTexture.uOffset += trueXDeplacement/100;
@@ -84,16 +104,6 @@ function createScene(stringLevel)
         background.position.y = camera.position.y + 4;
         underground_backround.position.x = player.position.x;
         first_backround.position.x = player.position.x;
-
-        //check if player is on the endblock
-        // for(let i=0;i<endBlockList.length;i++)
-        // {
-        //     if(endBlockList[i].intersectsPoint(player.position))
-        //     {
-        //         console.log("this is the end...");
-        //         loadNextLevel();
-        //     }
-        // }
 
         //new endlevel checking
         if(endBlock == null)
@@ -157,17 +167,12 @@ function loadLevel(stringLevel, scene, spawnPoints, poros)
                 var swordSprite = new BABYLON.Sprite("sword", swordSpriteManager);
                 swordSprite.playAnimation(0,4, true, 100);
                 swordSprite.position = new BABYLON.Vector3(width/2, (levelHeight - height)/2 + 0.25, 0);
-                //var endblock = BABYLON.Mesh.CreateBox('endbox', 0.5, scene); // mal liste endblock
-                //endblock.position = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0);
-                //endblock.isVisible = false;
-                //endBlockList.push(endblock);
                 endBlock = swordSprite;
             }
             else if(caracter[width] == "p")
             {
                 var poroSpriteManager = new BABYLON.SpriteManager("poroSM", "resources/poro.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
                 poros.push(new poro(width/2, (levelHeight - height)/2, 2, poroSpriteManager, scene));
-                
             }
         }
     }
