@@ -29,7 +29,7 @@ var attackDelay = 1000;
 var attackTimer = 0;
 
 var moveDstCount = 0;
-var regenShieldDst = 25;
+var regenShieldDst = 35;
 
 var lastposx = 0;
 var trueXDeplacement = 0;
@@ -117,7 +117,7 @@ function updatePlayer(map, scene, spawnPosition, poros)
 
     trueXDeplacement = player.position.x - lastposx;
 
-    moveDstCount += finalDstX;
+    moveDstCount += Math.abs(finalDstX);
     if(moveDstCount > regenShieldDst)
     {
         moveDstCount = 0;
@@ -171,6 +171,12 @@ function updatePlayer(map, scene, spawnPosition, poros)
     {
         respawn(spawnPosition);
     }
+
+    //if not imortal anymore reset the good color
+    if(playerSprite.color.a != 1 && immortalTimer<Date.now())
+    {
+        playerSprite.color = new BABYLON.Color4(1,1,1,1);
+    }
 }
 
 function hitPlayer(spawnPosition)
@@ -179,6 +185,7 @@ function hitPlayer(spawnPosition)
     {
         playerHealth--;
         shieldSprite.isVisible = false;
+        playerSprite.color = new BABYLON.Color4(1,1,1,0.5);
         if(playerHealth<=0)
         {
             respawn(spawnPosition)
@@ -202,6 +209,7 @@ function respawn(spawnPosition)
     deathSound.play();
     regenShield();
     moveDstCount = 0;
+    playerSprite.color = new BABYLON.Color4(1,1,1,1);
 }
 
 function regenShield()
