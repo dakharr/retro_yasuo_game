@@ -132,6 +132,9 @@ function loadLevel(stringLevel, scene, spawnPoints, poros)
     var blockList = initOriginalsBlock(scene);
     var endBlock = null;
 
+    var swordSpriteManager = new BABYLON.SpriteManager("swordSM", "resources/sword.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    var poroSpriteManager = new BABYLON.SpriteManager("poroSM", "resources/poro.png", 50, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+
     for(let height=0; height<levelHeight;height++)
     {
         var caracter = stringLine[height].split(' ');
@@ -160,17 +163,15 @@ function loadLevel(stringLevel, scene, spawnPoints, poros)
             }
             else if(caracter[width] == "e")
             {
-                var swordSpriteManager = new BABYLON.SpriteManager("swordSM", "resources/sword.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
                 var swordSprite = new BABYLON.Sprite("sword", swordSpriteManager);
                 swordSprite.playAnimation(0,4, true, 100);
                 swordSprite.position = new BABYLON.Vector3(width/2, (levelHeight - height)/2 + 0.25, 0);
                 endBlock = swordSprite;
             }
             else if(caracter[width] == "p")
-            {
-                var poroSpriteManager = new BABYLON.SpriteManager("poroSM", "resources/poro.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-                poros.push(new poro(width/2, (levelHeight - height)/2, 2, poroSpriteManager, scene));
-            }
+                poros.push(new poro(width/2, (levelHeight - height)/2, 2, false, poroSpriteManager, scene));
+            else if(caracter[width] == "v")
+                poros.push(new poro(width/2, (levelHeight - height)/2, 2, true, poroSpriteManager, scene));
         }
     }
 

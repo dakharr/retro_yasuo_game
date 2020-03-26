@@ -1,6 +1,6 @@
 class poro
 {
-    constructor(posx, posy, walkDst, spriteManager, scene)
+    constructor(posx, posy, walkDst, fly, spriteManager, scene)
     {
         this.walkDst = walkDst/2;
         this.posx = posx;
@@ -12,7 +12,10 @@ class poro
         this.poroHitbox.isVisible = false;
         this.poroHitbox.isPickable = true;
 
-        this.poro.playAnimation(12, 17, true, 100);
+        if(fly)
+            this.poro.playAnimation(18, 23, true, 100);
+        else
+            this.poro.playAnimation(12, 17, true, 100);
 
         this.randomOffset = Math.random()*10000;
         this.startTime = Date.now() + this.randomOffset;
