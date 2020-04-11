@@ -9,6 +9,8 @@ function createScene(stringLevel)
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(-2, 1, -2), scene);
     light.intensity = 0.7;
 
+    //var music = new BABYLON.Sound("Music", "resources/theme_mountain.mp3", scene, null, {loop: true, autoplay: true});
+
     //-------- input --------
 
     var map = {};
