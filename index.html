@@ -80,6 +80,12 @@
         function loadNextLevel()
         {
             gameScene.dispose();
+
+            var biome = 1; //0 grassland, 1 cave, 2 heaven
+            if(levelCount >= 8)
+            {
+                biome = 1;
+            }
             if(levelCount >= stringLevelList.length)
             {
                 music.stop();
@@ -92,7 +98,7 @@
             {
                 if(levelCount == 0) //mountain soundtrack
                     music = new BABYLON.Sound("Music", "resources/theme_mountain.mp3", audioScene, null, {loop: true, autoplay: true});
-                gameScene = createScene(stringLevelList[levelCount]);
+                gameScene = createScene(stringLevelList[levelCount], biome);
                 levelCount++;
             }
         }
