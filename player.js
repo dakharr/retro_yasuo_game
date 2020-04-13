@@ -27,6 +27,7 @@ var immortalTimer = 0;
 
 var attackDelay = 1000;
 var attackTimer = 0;
+var isAttacking = false;
 
 var moveDstCount = 0;
 var regenShieldDst = 35;
@@ -154,12 +155,12 @@ function updatePlayer(map, scene, spawnPosition, poros)
     }
 
     //animation update
-    if(xdep !=0 && !moving)
+    if(xdep !=0 && !moving && !isAttacking)
     {
         playerSprite.playAnimation(16, 23, true, 100);
         moving = true;
     }
-    else if(xdep == 0 && moving)
+    else if(xdep == 0 && moving && !isAttacking)
     {
         playerSprite.playAnimation(1, 5, true, 100);
         moving = false;
@@ -209,6 +210,7 @@ function respawn(spawnPosition)
     deathSound.play();
     regenShield();
     moveDstCount = 0;
+    isAttacking = false;
     playerSprite.color = new BABYLON.Color4(1,1,1,1);
 }
 
@@ -224,11 +226,13 @@ function attack(scene, poros)
     var raypos1 = new BABYLON.Vector3(player.position.x, player.position.y, player.position.z);
     var rayDir = new BABYLON.Vector3(1, 0, 0);
 
+    isAttacking = true;
     playerSprite.playAnimation(8, 13, false, 50, 
         function(){
             //animation update
             playerSprite.playAnimation(1, 5, true, 100);
             moving = false;
+            isAttacking = false;
         });
 
     if(playerSprite.invertU)

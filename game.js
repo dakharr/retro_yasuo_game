@@ -5,7 +5,7 @@ function createScene(stringLevel, biome)
     scene.collisionsEnabled = true;
 
     // This creates and positions a free camera (non-mesh)
-    var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 3.5, -8), scene);
+    var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 3.6, -8), scene);
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(-2, 1, -2), scene);
     light.intensity = 0.7;
 
@@ -138,6 +138,9 @@ function createScene(stringLevel, biome)
             camera.position.y = player.position.y-1;
         if(player.position.y - camera.position.y < 0 && camera.position.y > 3.5)
             camera.position.y = player.position.y;
+        if(camera.position.y < 3.6)
+            camera.position.y = 3.6;
+
 
         //update backgrounds
         background.position.x = player.position.x;
