@@ -23,3 +23,10 @@ spacebar | attaque
 ## Le jeu
 
 le jeu est disponible sur ce lien : https://dakharr.itch.io/yasuo
+
+## trucs cool qu'ont a fait
+editeur de niveau
+mecanique de saut
+plein d'audio
+optimisation de l'affichage des blocks
+fonds parallax
