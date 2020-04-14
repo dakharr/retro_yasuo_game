@@ -7,6 +7,7 @@ var block = ["resources/editor/void.png", "resources/editor/grassy_dirt.png", "r
 var spawn = "resources/editor/spawn.png";
 var exit = "resources/editor/exit.png";
 var poro = "resources/editor/poro_editor.png";
+var poroVolant = "resources/editor/poroVolant_editor.png";
 
 var imgDiv = document.getElementById("palette");
 
@@ -18,6 +19,7 @@ for(var i = 0; i < block.length;i++)
 imgDiv.innerHTML += "<br><img src='"+spawn+"' width='64' height='64' onclick=selectBlock('x')>";
 imgDiv.innerHTML += "<img src='"+exit+"' width='64' height='64' onclick=selectBlock('e')>";
 imgDiv.innerHTML += "<img src='"+poro+"' width='64' height='64' onclick=selectBlock('p')>";
+imgDiv.innerHTML += "<img src='"+poroVolant+"' width='64' height='64' onclick=selectBlock('v')>";
 
 var selectInfoTxt = document.getElementById("selectionInfo");
 
@@ -61,6 +63,8 @@ function updateBlock(id)
         index = exit;
     if(selectedBlock == "p")
         index = poro;
+    if(selectedBlock == "v")
+        index = poroVolant;
     document.getElementById(id).innerHTML = "<img id='img"+id+"' src='"+ index +"' width='64' height='64'>";
 }
 
@@ -81,6 +85,8 @@ function convertMap()
                 output += "e ";
             else if(imgsrc.includes(poro))
                 output += "p ";
+            else if(imgsrc.includes(poroVolant))
+                output += "v ";
             else
             {
                 for(var i=0; i<block.length;i++)
