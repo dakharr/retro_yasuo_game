@@ -26,68 +26,75 @@ function createScene(stringLevel, biome)
 
     //character
     createPlayer(scene);
+    var tex_background;
+    var tex_middleground;
+    var tex_foreground;
+
+    if(biome == 0)
+    {
+        tex_background = "resources/lands_background.png";
+        tex_middleground = "resources/lands_middleground.png";
+        tex_foreground = "resources/lands_foreground.png";
+    }
+    else
+    {
+        tex_background = "resources/cave_background.png";
+        tex_middleground = "resources/cave_middleground.png";
+        tex_foreground = "resources/cave_foreground.png";
+    }
 
     // background grass
-    var land_background = BABYLON.MeshBuilder.CreatePlane("background", {width: 20, height: 20}, scene);
+    var land_background = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
     var material = new BABYLON.StandardMaterial("texture1", scene);
-    material.diffuseTexture = new BABYLON.Texture("resources/background_lands.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    material.diffuseTexture = new BABYLON.Texture(tex_background, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     land_background.material = material;
     land_background.position = new BABYLON.Vector3(0, 4, 1.2);
 
-    var underground_backround = BABYLON.MeshBuilder.CreatePlane("background", {width: 20, height: 20}, scene);
+    var land_middleground = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
     var under_mat = new BABYLON.StandardMaterial("texture2", scene);
-    under_mat.diffuseTexture = new BABYLON.Texture("resources/background_underground.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    under_mat.diffuseTexture = new BABYLON.Texture(tex_middleground, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     under_mat.diffuseTexture.hasAlpha = true;
-    underground_backround.material = under_mat;
-    underground_backround.position = new BABYLON.Vector3(0, -8.9, 0.25);
+    land_middleground.material = under_mat;
+    land_middleground.position = new BABYLON.Vector3(0, 4, 1.2);
 
-    var first_backround = BABYLON.MeshBuilder.CreatePlane("background", {width: 20, height: 5}, scene);
+    var land_foreground = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
     var first_mat = new BABYLON.StandardMaterial("texture3", scene);
-    first_mat.diffuseTexture = new BABYLON.Texture("resources/first_background.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    first_mat.diffuseTexture = new BABYLON.Texture(tex_foreground, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     first_mat.diffuseTexture.hasAlpha = true;
-    first_backround.material = first_mat;
-    first_backround.position = new BABYLON.Vector3(0, 1, 1.1);
+    land_foreground.material = first_mat;
+    land_foreground.position = new BABYLON.Vector3(0, 4, 1.2);
 
 
 
     //background cave
-    var cave_background = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
-    var cave_background_mat = new BABYLON.StandardMaterial("texture1", scene);
-    cave_background_mat.diffuseTexture = new BABYLON.Texture("resources/cave_background.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    cave_background.material = cave_background_mat;
-    cave_background.position = new BABYLON.Vector3(0, 4, 1.2);
+    // var cave_background = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
+    // var cave_background_mat = new BABYLON.StandardMaterial("texture1", scene);
+    // cave_background_mat.diffuseTexture = new BABYLON.Texture("resources/cave_background.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    // cave_background.material = cave_background_mat;
+    // cave_background.position = new BABYLON.Vector3(0, 4, 1.2);
 
-    var cave_middleground = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
-    var cave_middleground_mat = new BABYLON.StandardMaterial("texture1", scene);
-    cave_middleground_mat.diffuseTexture = new BABYLON.Texture("resources/cave_middleground.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    cave_middleground_mat.diffuseTexture.hasAlpha = true;
-    cave_middleground.material = cave_middleground_mat;
-    cave_middleground.position = new BABYLON.Vector3(0, 4, 1.2);
+    // var cave_middleground = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
+    // var cave_middleground_mat = new BABYLON.StandardMaterial("texture1", scene);
+    // cave_middleground_mat.diffuseTexture = new BABYLON.Texture("resources/cave_middleground.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    // cave_middleground_mat.diffuseTexture.hasAlpha = true;
+    // cave_middleground.material = cave_middleground_mat;
+    // cave_middleground.position = new BABYLON.Vector3(0, 4, 1.2);
 
-    var cave_foreground = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
-    var cave_foreground_mat = new BABYLON.StandardMaterial("texture1", scene);
-    cave_foreground_mat.diffuseTexture = new BABYLON.Texture("resources/cave_foreground.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    cave_foreground_mat.diffuseTexture.hasAlpha = true;
-    cave_foreground.material = cave_foreground_mat;
-    cave_foreground.position = new BABYLON.Vector3(0, 4, 1.2);
+    // var cave_foreground = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
+    // var cave_foreground_mat = new BABYLON.StandardMaterial("texture1", scene);
+    // cave_foreground_mat.diffuseTexture = new BABYLON.Texture("resources/cave_foreground.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    // cave_foreground_mat.diffuseTexture.hasAlpha = true;
+    // cave_foreground.material = cave_foreground_mat;
+    // cave_foreground.position = new BABYLON.Vector3(0, 4, 1.2);
 
 
     var background;
     var middleground;
     var foreground;
 
-    if(biome == 0)
-    {
-        background = land_background;
-        middleground = first_backround;
-        foreground = underground_backround;
-    }
-    else if(biome == 1)
-    {
-        background = cave_background;
-        middleground = cave_middleground;
-        foreground = cave_foreground;
-    }
+    background = land_background;
+    middleground = land_middleground;
+    foreground = land_foreground;
 
     var endBlock = null;
     var spawnPoints = new Array();
