@@ -1,13 +1,18 @@
 table, td
 {
-    border: 1px solid #bbbbbb;
     padding: 0px;
+    text-align: center;
+    margin: auto;
+    
 }
 
 body
 {
     user-select: none;
-    
+    font-family: aller;
+
+    background-color: #13061A;
+    color: aliceblue;
 }
 
 img
@@ -16,4 +21,67 @@ img
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
+}
+
+@font-face {
+    font-family: 'aller';
+    src: url('resources/fonts/aller.ttf');
+}
+
+#editor_option
+{
+    text-align: center;
+}
+
+
+h1
+{
+    text-align: center;
+}
+
+button
+{
+    background-color: #5D1D80;
+    border: 0px;
+    padding: 15px;
+    border-radius: 20px;
+    font-family: 'aller';
+    src: url('resources/fonts/aller.ttf');
+    color:aliceblue;
+    font-size: 20px;
+}
+
+button:hover
+{
+    background-color: #702399;
+}
+
+button:focus
+{
+    outline: 0px;
+    outline-color: #A835E6;
+}
+
+input
+{
+    background-color: #5D1D80;
+    color: aliceblue;
+    font-family: 'aller';
+    src: url('resources/fonts/aller.ttf');
+    border-radius: 5px;
+    border: 0px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+input:focus
+{
+    border: 1px solid aliceblue;
+    outline: 0px;
+}
+
+label
+{
+    font-size: 20px;
+    padding-right: 5px;
 }

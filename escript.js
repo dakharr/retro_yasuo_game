@@ -40,10 +40,12 @@ function generate()
         {
             var id = x + "-" + y;
             var onclick = "updateBlock('"+ id+ "')";
-            htmlTab += "<td id="+ id + " onclick=" + onclick +"> <img id='img"+id+"' src='"+block[0]+"' width='64' height='64'> </td>";
+            htmlTab += "<td id="+ id + " onclick=" + onclick +"><img id='img"+id+"' src='"+block[0]+"' width='64' height='64'></td>";
         }
         htmlTab += "</tr>";
     }
+
+    htmlTab += "</table>";
 
     tab.innerHTML = htmlTab;
 }
