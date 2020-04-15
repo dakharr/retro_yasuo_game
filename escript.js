@@ -91,6 +91,7 @@ function convertMap()
                 output += "p ";
             else if(imgsrc.includes(poroVolant))
                 output += "v ";
+
             else
             {
                 for(var i=0; i<block.length;i++)
@@ -107,6 +108,43 @@ function convertMap()
         else
             output += "\"\n";
     }
+
+function loadMap(stringLevel)
+{
+    var array = stringLevel.split('\n');
+    height = array.length;
+    for (let i=0;i<height;i++){
+        array[i]=array[i].split(' ');
+    } 
+    width = array[0].length;
+    var htmlTab = "<table>";
+    for(var y = 0;y<height;y++)
+    {
+        htmlTab += "<tr>";
+        for(var x = 0; x < width; x++)
+        {
+            var truc = null;
+            if(array[x][y] == "x")
+                truc = spawn;
+            else if(array[x][y] == "e")
+                truc = exit;
+            else if(array[x][y] == "p")
+                truc = poro;
+            else if(array[x][y] == "v")
+                truc = poroVolant;
+            for(var i = 0; i < block.length;i++)
+            { 
+                if (array[x][y]==i) truc = block[i]; 
+            }
+            var id = x + "-" + y;
+            var onclick = "updateBlock('"+ id+ "')";
+            htmlTab += "<td id="+ id + " onclick=" + onclick +"> <img id='img"+id+"' src='"+truc+"' width='64' height='64'> </td>";
+        }
+        htmlTab += "</tr>";
+    }
+    htmlTab += "</table>";
+
+}
 
     console.log(output);
     var out = document.getElementById("output");
