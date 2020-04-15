@@ -49,7 +49,7 @@ button
     background-color: #5D1D80;
     border: 0px;
     padding: 15px;
-    border-radius: 20px;
+    border-radius: 5px;
     font-family: 'aller';
     src: url('resources/fonts/aller.ttf');
     color:aliceblue;
