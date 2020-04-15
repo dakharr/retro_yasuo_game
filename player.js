@@ -54,17 +54,17 @@ function createPlayer(scene)
     shieldSprite = new BABYLON.Sprite("sh", spriteManagerShield);
     shieldSprite.playAnimation(0, 5, true, 100);
 
-    jumpSound = new BABYLON.Sound("jump", "resources/yasuo_jump.mp3", scene);
-    jumpSound2 = new BABYLON.Sound("jump", "resources/yasuo_jump2.mp3", scene);
-    jumpSound3 = new BABYLON.Sound("jump", "resources/yasuo_jump3.mp3", scene);
-    jumpSound4 = new BABYLON.Sound("jump", "resources/yasuo_jump4.mp3", scene);
-    deathSound = new BABYLON.Sound("death1", "resources/yasuo_death1.mp3", scene);
-    hitSound = new BABYLON.Sound("hit1", "resources/shield_break.mp3", scene);
-    attackSound = new BABYLON.Sound("attack", "resources/yasuo_q.mp3", scene);
-    attackSound2 = new BABYLON.Sound("attack", "resources/yasuo_q2.mp3", scene);
-    attackSound3 = new BABYLON.Sound("attack", "resources/yasuo_q3.mp3", scene);
-    lameSound = new BABYLON.Sound("attacklame", "resources/swing_lame1.mp3", scene);
-    regenShieldSound = new BABYLON.Sound("regenShieldSound", "resources/regen_shield.mp3", scene);
+    jumpSound = new BABYLON.Sound("jump", "resources/soundEffects/yasuo_jump.mp3", scene);
+    jumpSound2 = new BABYLON.Sound("jump", "resources/soundEffects/yasuo_jump2.mp3", scene);
+    jumpSound3 = new BABYLON.Sound("jump", "resources/soundEffects/yasuo_jump3.mp3", scene);
+    jumpSound4 = new BABYLON.Sound("jump", "resources/soundEffects/yasuo_jump4.mp3", scene);
+    deathSound = new BABYLON.Sound("death1", "resources/soundEffects/yasuo_death1.mp3", scene);
+    hitSound = new BABYLON.Sound("hit1", "resources/soundEffects/shield_break.mp3", scene);
+    attackSound = new BABYLON.Sound("attack", "resources/soundEffects/yasuo_q.mp3", scene);
+    attackSound2 = new BABYLON.Sound("attack", "resources/soundEffects/yasuo_q2.mp3", scene);
+    attackSound3 = new BABYLON.Sound("attack", "resources/soundEffects/yasuo_q3.mp3", scene);
+    lameSound = new BABYLON.Sound("attacklame", "resources/soundEffects/swing_lame1.mp3", scene);
+    regenShieldSound = new BABYLON.Sound("regenShieldSound", "resources/soundEffects/regen_shield.mp3", scene);
 
     playerHealth = playerHealthMax;
     playerSetPosition(new BABYLON.Vector3(0, 4, 0));

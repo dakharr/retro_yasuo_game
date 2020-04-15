@@ -63,7 +63,7 @@
         //var gameScene = specialScene();
 
         var audioScene = new BABYLON.Scene(engine);
-        var music = new BABYLON.Sound("Music", "resources/theme_menu.mp3", audioScene, null, {loop: true, autoplay: true});
+        var music = new BABYLON.Sound("Music", "resources/music/theme_menu.mp3", audioScene, null, {loop: true, autoplay: true});
         BABYLON.Engine.audioEngine.setGlobalVolume(0.1);
 
         var levelCount = 0;
@@ -97,7 +97,7 @@
             else
             {
                 if(levelCount == 0) //mountain soundtrack
-                    music = new BABYLON.Sound("Music", "resources/theme_mountain.mp3", audioScene, null, {loop: true, autoplay: true});
+                    music = new BABYLON.Sound("Music", "resources/music/theme_mountain.mp3", audioScene, null, {loop: true, autoplay: true});
                 gameScene = createScene(stringLevelList[levelCount], biome);
                 levelCount++;
             }
