@@ -227,7 +227,7 @@ function attack(scene, poros)
     var rayDir = new BABYLON.Vector3(1, 0, 0);
 
     isAttacking = true;
-    playerSprite.playAnimation(8, 13, false, 50, 
+    playerSprite.playAnimation(8, 13, false, 30, 
         function(){
             //animation update
             playerSprite.playAnimation(1, 5, true, 100);
