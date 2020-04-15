@@ -10,28 +10,32 @@
 </head>
 
 <body>
+  
+  <h1>Level Editor</h1>
 
-    <h1>Level Editor</h1>
+  <div id="editor_option">
+    <label>Width</label>
+    <input id="map_width" value="10"><br><br>
+    <label>Height</label>
+    <input id="map_height" value="10"><br><br>
 
-    <div id="editor_option">
-        <label>Width</label>
-        <input id="map_width" value="10"><br><br>
-        <label>Height</label>
-        <input id="map_height" value="10"><br><br>
+    <div id="palette"></div>
 
-        <div id="palette"></div>
-
-        <p id="selectionInfo">selected block 0</p>
+    <p id="selectionInfo">selected block 0</p>
     <button onclick="generate()">generate grid</button><br><br>
-    </div>
+  </div>
 
     <div id="tab"></div>
 
     <br><br>
 
-    <button onclick="convertMap()">generate map text</button>
-    <br><br>
-    <textarea id="output" rows="10" cols="100"></textarea>
+    <div id="div_output">
+      <button id="converterButton" onclick="convertMap()" hidden=true>generate map text</button>
+      <p id="hide">copied to clipboard !</p>
+      <br><br>
+      <textarea id="output" rows="10" cols="100" hidden=true></textarea>
+    </div>
+    
 
   <script src="escript.js"></script>
 </body>
