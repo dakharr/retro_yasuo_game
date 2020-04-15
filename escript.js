@@ -48,6 +48,8 @@ function generate()
     htmlTab += "</table>";
 
     tab.innerHTML = htmlTab;
+    
+    document.getElementById("converterButton").hidden = false; //draw the export button
 }
 
 function selectBlock(select)
@@ -112,4 +114,15 @@ function convertMap()
     out.select();
 
     document.execCommand("copy");
+    var elem = document.getElementById("hide");
+
+    if(elem != null)
+        elem.id = "fadeOutAnim";
+    else
+    {
+        elem = document.getElementById("fadeOutAnim");
+        var newo = elem.cloneNode(true);
+        elem.parentNode.replaceChild(newo, elem);
+    }
+    
 }

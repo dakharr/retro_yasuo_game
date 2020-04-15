@@ -15,6 +15,11 @@ body
     color: aliceblue;
 }
 
+p
+{
+    font-size: 20px;
+}
+
 img
 {
     -webkit-user-drag: none;
@@ -28,7 +33,7 @@ img
     src: url('resources/fonts/aller.ttf');
 }
 
-#editor_option
+#editor_option, #div_output
 {
     text-align: center;
 }
@@ -84,4 +89,40 @@ label
 {
     font-size: 20px;
     padding-right: 5px;
+}
+
+textarea
+{
+    background-color: #5D1D80;
+
+    font-family: 'aller';
+    src: url('resources/fonts/aller.ttf');
+
+    color: aliceblue;
+    border: 0px;
+
+    font-size: 16px;
+}
+
+textarea:focus
+{
+    outline: 2px solid aliceblue;
+}
+
+@keyframes fadeout
+{
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+#fadeOutAnim
+{
+    opacity: 0;
+    animation-name: fadeout;
+    animation-duration: 2s;
+}
+
+#hide
+{
+    opacity: 0;
 }
