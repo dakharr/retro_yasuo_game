@@ -109,43 +109,6 @@ function convertMap()
             output += "\"\n";
     }
 
-function loadMap(stringLevel)
-{
-    var array = stringLevel.split('\n');
-    height = array.length;
-    for (let i=0;i<height;i++){
-        array[i]=array[i].split(' ');
-    } 
-    width = array[0].length;
-    var htmlTab = "<table>";
-    for(var y = 0;y<height;y++)
-    {
-        htmlTab += "<tr>";
-        for(var x = 0; x < width; x++)
-        {
-            var truc = null;
-            if(array[x][y] == "x")
-                truc = spawn;
-            else if(array[x][y] == "e")
-                truc = exit;
-            else if(array[x][y] == "p")
-                truc = poro;
-            else if(array[x][y] == "v")
-                truc = poroVolant;
-            for(var i = 0; i < block.length;i++)
-            { 
-                if (array[x][y]==i) truc = block[i]; 
-            }
-            var id = x + "-" + y;
-            var onclick = "updateBlock('"+ id+ "')";
-            htmlTab += "<td id="+ id + " onclick=" + onclick +"> <img id='img"+id+"' src='"+truc+"' width='64' height='64'> </td>";
-        }
-        htmlTab += "</tr>";
-    }
-    htmlTab += "</table>";
-
-}
-
     console.log(output);
     var out = document.getElementById("output");
     out.innerHTML = output;
@@ -162,5 +125,68 @@ function loadMap(stringLevel)
         var newo = elem.cloneNode(true);
         elem.parentNode.replaceChild(newo, elem);
     }
-    
 }
+
+function loadMap()
+{
+    var stringdata = document.getElementById("maploader");
+    
+    var stringLevel = stringdata.value;
+    var plusexplode = stringLevel.split("+");
+
+    for(var i = 0;i<plusexplode.length;i++)
+    {
+        var firstIndex = plusexplode[i].indexOf("\"")+1;
+        var lastIndex = plusexplode[i].lastIndexOf("\"")-3;
+        if(i == plusexplode.length-1)
+            lastIndex = plusexplode[i].lastIndexOf("\"")-1;
+        var result = plusexplode[i].substring(firstIndex, lastIndex);
+        plusexplode[i] = result;
+    }
+
+    console.log(plusexplode);
+    width = plusexplode[0].split(' ').length;
+    height = plusexplode.length;
+
+    console.log(width + " " + height);
+
+    var tablehtml = "<table>";
+
+    for(var y = 0; y < height; y++)
+    {
+        var substring = plusexplode[y].split(' ');
+
+        tablehtml += "<tr>";
+        for(var x = 0; x < width; x++)
+        {
+            var elem = substring[x];
+
+            var index;
+            if(elem == "x")
+                index = spawn;
+            else if(elem == "e")
+                index = exit;
+            else if(elem == "p")
+                index = poro;
+            else if(elem == "v")
+                index = poroVolant;
+            else
+                index = block[elem];
+
+                console.log(index);
+                var id = x + "-" + y;
+                var onclick = "updateBlock('"+ id+ "')";
+                tablehtml += "<td id="+ id + " onclick=" + onclick +"><img id='img"+id+"' src='"+index+"' width='64' height='64'></td>";
+        }
+        tablehtml += "</tr>";
+    }
+
+    tablehtml += "</table>";
+
+    document.getElementById("tab").innerHTML = tablehtml;
+
+    stringdata.value = "";
+    document.getElementById("converterButton").hidden = false; //draw the export button
+}
+
+    
