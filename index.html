@@ -98,7 +98,14 @@
             {
                 if(levelCount == 0) //mountain soundtrack
                     music = new BABYLON.Sound("Music", "resources/music/theme_mountain.mp3", audioScene, null, {loop: true, autoplay: true});
+                if(levelCount == 7)
+                {
+                    music.stop();
+                    music.dispose();
+                    music = new BABYLON.Sound("Music", "resources/music/theme_cave.mp3", audioScene, null, {loop: true, autoplay: true});
+                }
                 gameScene = createScene(stringLevelList[levelCount], biome);
+
                 levelCount++;
             }
         }
