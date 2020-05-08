@@ -74,14 +74,14 @@ input
     font-family: 'aller';
     src: url('resources/fonts/aller.ttf');
     border-radius: 5px;
-    border: 0px;
+    border: 2px solid transparent;
     padding: 5px;
     font-size: 20px;
 }
 
 input:focus
 {
-    border: 1px solid aliceblue;
+    border: 2px solid aliceblue;
     outline: 0px;
 }
 
