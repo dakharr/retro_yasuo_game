@@ -48,6 +48,7 @@
         <script src="player.js"></script>
         <script src="game.js"></script>
         <script src="placeholder.js"></script>
+        <script src="sonaLevel.js"></script>
     </head>
     <body>
 
@@ -58,7 +59,8 @@
         var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
         
    
-        var gameScene = createSceneMenu();
+        //var gameScene = createSceneMenu();
+        var gameScene = sonaScene();
         //var gameScene = createScene(stringLevel1);
         //var gameScene = specialScene();
 
