@@ -10,16 +10,16 @@ function sonaScene()
 
     //-------- input --------
 
-    var block = buildBlock(scene, 0);
+    var originalBlocks = initOriginalsBlock(scene);
 
     var chunk = new Array();
     
-    chunk.push(addChunk(block, new BABYLON.Vector3(-15, -2, 0)));
-    chunk.push(addChunk(block, new BABYLON.Vector3(-10, -2, 0)));
-    chunk.push(addChunk(block, new BABYLON.Vector3(-5, -2, 0)));
-    chunk.push(addChunk(block, new BABYLON.Vector3(0, -2, 0)));
-    chunk.push(addChunk(block, new BABYLON.Vector3(5, -2, 0)));
-    chunk.push(addChunk(block, new BABYLON.Vector3(10, -2, 0)));
+    chunk.push(addChunk(c1, new BABYLON.Vector3(-15, -2, 0), originalBlocks));
+    chunk.push(addChunk(c1, new BABYLON.Vector3(-10, -2, 0), originalBlocks));
+    chunk.push(addChunk(c1, new BABYLON.Vector3(-5, -2, 0), originalBlocks));
+    chunk.push(addChunk(c1, new BABYLON.Vector3(0, -2, 0), originalBlocks));
+    chunk.push(addChunk(c1, new BABYLON.Vector3(5, -2, 0), originalBlocks));
+    chunk.push(addChunk(c1, new BABYLON.Vector3(10, -2, 0), originalBlocks));
 
     
     
@@ -38,7 +38,7 @@ function sonaScene()
             console.log(chunk[0][0].position.x);
             var removedChunk = chunk.shift();
             freeChunk(removedChunk);
-            chunk.push(addChunk(block, new BABYLON.Vector3(10, -2, 0)));
+            chunk.push(addChunk(getRandomChunkModel(), new BABYLON.Vector3(10, -2, 0), originalBlocks));
             console.log("aa");
         }
     });
@@ -46,19 +46,9 @@ function sonaScene()
     return scene;
 }
 
-function addChunk(block, position)
+function addChunk(chunkModel, position, listBlock)
 {
-    var chunk = new Array()
-    for(let h = 0; h < 4; h++)
-    {
-        for(let w = 0; w < 10; w++)
-        {
-            var pos = new BABYLON.Vector3(position.x + w/2, position.y + h/2, position.z + 0);
-            chunk.push(instanceBlock(pos, block));
-        }
-    }
-
-    return chunk;
+    return loadchunk(chunkModel, position, listBlock);
 }
 
 function freeChunk(chunk)
@@ -76,3 +66,66 @@ function instanceBlock(position, block)
 
     return instance;
 }
+
+function loadchunk(stringChunk, posoffset, originalBlockList)
+{
+    chunkBlocks = new Array();
+    var stringLine = stringChunk.split('\n');
+
+    var levelHeight = stringLine.length;
+    var levelWidth = stringLine[0].split(' ').length;
+
+    for(let height = 0; height<levelHeight;height++)
+    {
+        var caracter = stringLine[height].split(' ');
+
+        for(let width = 0; width < levelWidth; width++)
+        {
+            var pos = new BABYLON.Vector3(width/2 + posoffset.x, (levelHeight - height)/2 + posoffset.y, 0 + posoffset.z);
+            
+            switch(caracter[width])
+            {
+                case "1":
+                    chunkBlocks.push(instanceBlock(pos, originalBlockList[0]));
+                    break;
+                case "2":
+                    chunkBlocks.push(instanceBlock(pos, originalBlockList[1]));
+                    break;
+                case "3":
+                    chunkBlocks.push(instanceBlock(pos, originalBlockList[2]));
+                    break;
+            }
+        }
+    }
+
+    return chunkBlocks;
+}
+
+function getRandomChunkModel()
+{
+    var rand = Math.random()*100;
+    if(rand < 30)
+        return c1;
+    else if(rand < 60)
+        return c2;
+    else
+        return c3;
+}
+
+var c1 = 
+"0 0 0 0 0 0 0 0 0 0 \n" +
+"0 0 0 0 0 0 0 0 0 0 \n" +
+"1 1 1 1 1 1 1 1 1 1 \n" +
+"1 1 1 1 1 1 1 1 1 1 ";
+
+var c2 = 
+"0 0 0 0 0 0 0 0 0 0 \n" +
+"0 0 0 1 1 1 1 0 0 0 \n" +
+"1 1 1 1 1 1 1 1 1 1 \n" +
+"1 1 1 1 1 1 1 1 1 1 ";
+
+var c3 = 
+"0 0 0 0 1 1 0 0 0 0 \n" +
+"0 0 0 1 1 1 0 0 0 0 \n" +
+"1 1 1 1 1 1 0 0 0 0 \n" +
+"1 1 1 1 1 1 1 1 1 1 ";
