@@ -28,7 +28,7 @@ function sonaScene()
 
         chunk.forEach(element => {
             element.forEach(block => {
-                block.position.x -= 0.1;
+                block.position.x -= 0.05;
             })
         })
 
@@ -38,7 +38,7 @@ function sonaScene()
             console.log(chunk[0][0].position.x);
             var removedChunk = chunk.shift();
             freeChunk(removedChunk);
-            chunk.push(addChunk(getRandomChunkModel(), new BABYLON.Vector3(10, -2, 0), originalBlocks));
+            chunk.push(addChunk(getRandomChunkModel(), new BABYLON.Vector3(chunk[chunk.length-1][chunk[chunk.length-1].length-1].position.x, -2, 0), originalBlocks));
             console.log("aa");
         }
     });
