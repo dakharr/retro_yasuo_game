@@ -70,7 +70,7 @@ function createPlayer(scene)
     playerSetPosition(new BABYLON.Vector3(0, 4, 0));
 }
 
-function updatePlayer(map, scene, spawnPosition, poros, altBehaviour = false)
+function updatePlayer(map, scene, spawnPosition, poros, altBehaviour = false, force = -0.0025)
 {
     //x deplacement
     xdep = 0;
@@ -121,14 +121,14 @@ function updatePlayer(map, scene, spawnPosition, poros, altBehaviour = false)
 
     if(altBehaviour == true)
     {
-        finalDstX = (xdep-0.0025)*deltatime;
+        finalDstX = (xdep*2 + force)*deltatime;
 
         rayPosRight = new BABYLON.Vector3(player.position.x, player.position.y-0.25, player.position.z);
-        rayRight = new BABYLON.Ray(rayPosRight, new BABYLON.Vector3(1,0,0),0.3);
+        rayRight = new BABYLON.Ray(rayPosRight, new BABYLON.Vector3(1,0,0),0.5);
         hitRight = scene.pickWithRay(rayRight);
 
         if(hitRight.pickedMesh!=null && xdep>0)
-            finalDstX = -0.0025*deltatime;
+            finalDstX = force*deltatime;
     }
     
     player.moveWithCollisions(new BABYLON.Vector3(finalDstX,vy*deltatime,0));

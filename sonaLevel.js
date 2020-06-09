@@ -32,7 +32,10 @@ function sonaScene()
     var swapEthereal = new BABYLON.Sound("swap", "resources/soundEffects/swapEthereal.mp3", scene);
     var levelState = 0;
 
-    
+    var slowScrollSpeed = 0.0025;
+    var baseScrollSpeed = 0.005;
+    var fastScrollSpeed = 0.0075;
+    var scrollSpeed = slowScrollSpeed;
 
     var originalBlocks = initOriginalsBlock(scene);
 
@@ -67,6 +70,7 @@ function sonaScene()
             
             if(levelState == 1)
             {
+                scrollSpeed = baseScrollSpeed;
                 swapKinetic.play();
                 music = new BABYLON.Sound("Music", "resources/music/kinetic.mp3", audioScene, null, {loop: true, autoplay: true, offset: 77});
             }
@@ -77,17 +81,19 @@ function sonaScene()
             }
             else if(levelState == 3)
             {
+                scrollSpeed = fastScrollSpeed;
                 swapEthereal.play();
                 music = new BABYLON.Sound("Music", "resources/music/ethereal.mp3", audioScene, null, {loop: true, autoplay: true, offset: 90});
+                
             }
                 
         }
 
-        updatePlayer(map, scene, new BABYLON.Vector3(0, 5, 0), new Array(), true);
+        updatePlayer(map, scene, new BABYLON.Vector3(0, 5, 0), new Array(), true, -scrollSpeed);
 
         chunk.forEach(element => {
             element.forEach(block => {
-                block.position.x -= 0.0025*deltatime;
+                block.position.x -= scrollSpeed*deltatime;
             })
         })
 
