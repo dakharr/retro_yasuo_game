@@ -27,6 +27,13 @@ function sonaScene()
         map[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
     }));
 
+    var swapKinetic = new BABYLON.Sound("swap", "resources/soundEffects/swapKinetic.mp3", scene);
+    var swapConcussive= new BABYLON.Sound("swap", "resources/soundEffects/swapConcussive.mp3", scene);
+    var swapEthereal = new BABYLON.Sound("swap", "resources/soundEffects/swapEthereal.mp3", scene);
+    var levelState = 0;
+
+    
+
     var originalBlocks = initOriginalsBlock(scene);
 
     var chunk = new Array();
@@ -38,13 +45,26 @@ function sonaScene()
     chunk.push(addChunk(c1, new BABYLON.Vector3(5, -2, 0), originalBlocks));
     chunk.push(addChunk(c1, new BABYLON.Vector3(10, -2, 0), originalBlocks));
 
-    
+    var startTime = Date.now();
     
     scene.registerAfterRender(function()
     {
         var deltatime = engine.getDeltaTime();
 
-        updatePlayer(map, scene, new BABYLON.Vector3(0, 5, 0), new Array());
+        if((Date.now() - startTime) > 10000)
+        {
+            startTime = Date.now();
+            console.log("next");
+            levelState++;
+            if(levelState == 1)
+                swapKinetic.play();
+            else if(levelState == 2)
+                swapConcussive.play();
+            else if(levelState == 3)
+                swapEthereal.play();
+        }
+
+        updatePlayer(map, scene, new BABYLON.Vector3(0, 5, 0), new Array(), true);
 
         chunk.forEach(element => {
             element.forEach(block => {
