@@ -51,17 +51,36 @@ function sonaScene()
     {
         var deltatime = engine.getDeltaTime();
 
-        if((Date.now() - startTime) > 10000)
+        if((Date.now() - startTime) > 30000)
         {
             startTime = Date.now();
             console.log("next");
+
             levelState++;
+
+            if(levelState < 4)
+            {
+                music.stop();
+                music.dispose();
+            }
+
+            
             if(levelState == 1)
+            {
                 swapKinetic.play();
+                music = new BABYLON.Sound("Music", "resources/music/kinetic.mp3", audioScene, null, {loop: true, autoplay: true, offset: 77});
+            }
             else if(levelState == 2)
+            {
                 swapConcussive.play();
+                music = new BABYLON.Sound("Music", "resources/music/concussive.mp3", audioScene, null, {loop: true, autoplay: true, offset: 89});
+            }
             else if(levelState == 3)
+            {
                 swapEthereal.play();
+                music = new BABYLON.Sound("Music", "resources/music/ethereal.mp3", audioScene, null, {loop: true, autoplay: true, offset: 90});
+            }
+                
         }
 
         updatePlayer(map, scene, new BABYLON.Vector3(0, 5, 0), new Array(), true);
