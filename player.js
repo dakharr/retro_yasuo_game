@@ -113,7 +113,16 @@ function updatePlayer(map, scene, spawnPosition, poros)
 
     //update player position
     var deltatime = engine.getDeltaTime();
-    var finalDstX = xdep*deltatime;
+
+    var rayPosRight = new BABYLON.Vector3(player.position.x, player.position.y-0.25, player.position.z);
+    var rayRight = new BABYLON.Ray(rayPosRight, new BABYLON.Vector3(1,0,0),0.3);
+    var hitRight = scene.pickWithRay(rayRight);
+
+    var finalDstX = (xdep-0.0025)*deltatime;
+
+    if(hitRight.pickedMesh!=null && xdep>0)
+        finalDstX = -0.0025*deltatime;
+    
     player.moveWithCollisions(new BABYLON.Vector3(finalDstX,vy*deltatime,0));
 
     trueXDeplacement = player.position.x - lastposx;

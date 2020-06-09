@@ -1,6 +1,7 @@
 function sonaScene()
 {
     var scene = new BABYLON.Scene(engine);
+    scene.collisionsEnabled = true;
     
     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 2, -8), scene);
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(-2, 1, -2), scene);
@@ -8,7 +9,23 @@ function sonaScene()
 
     camera.position = new BABYLON.Vector3(0,0, -8);
 
+    createPlayer(scene);
+    playerSetPosition(new BABYLON.Vector3(0, 5, 0));
+
     //-------- input --------
+
+    var map = {};
+    scene.actionManager = new BABYLON.ActionManager(scene);
+
+    scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnKeyDownTrigger, function(evt)
+    {
+        map[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
+    }));
+
+    scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnKeyUpTrigger, function(evt)
+    {
+        map[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
+    }));
 
     var originalBlocks = initOriginalsBlock(scene);
 
@@ -25,10 +42,13 @@ function sonaScene()
     
     scene.registerAfterRender(function()
     {
+        var deltatime = engine.getDeltaTime();
+
+        updatePlayer(map, scene, new BABYLON.Vector3(0, 5, 0), new Array());
 
         chunk.forEach(element => {
             element.forEach(block => {
-                block.position.x -= 0.05;
+                block.position.x -= 0.0025*deltatime;
             })
         })
 
@@ -38,7 +58,7 @@ function sonaScene()
             console.log(chunk[0][0].position.x);
             var removedChunk = chunk.shift();
             freeChunk(removedChunk);
-            chunk.push(addChunk(getRandomChunkModel(), new BABYLON.Vector3(chunk[chunk.length-1][chunk[chunk.length-1].length-1].position.x, -2, 0), originalBlocks));
+            chunk.push(addChunk(getRandomChunkModel(), new BABYLON.Vector3(chunk[chunk.length-1][chunk[chunk.length-1].length-1].position.x+0.5, -2, 0), originalBlocks));
             console.log("aa");
         }
     });
