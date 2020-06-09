@@ -84,7 +84,10 @@ function sonaScene()
                 scrollSpeed = fastScrollSpeed;
                 swapEthereal.play();
                 music = new BABYLON.Sound("Music", "resources/music/ethereal.mp3", audioScene, null, {loop: true, autoplay: true, offset: 90});
-                
+            }
+            else
+            {
+                scrollSpeed = 0;
             }
                 
         }
@@ -181,16 +184,16 @@ var c1 =
 "0 0 0 0 0 0 0 0 0 0 \n" +
 "0 0 0 0 0 0 0 0 0 0 \n" +
 "1 1 1 1 1 1 1 1 1 1 \n" +
-"1 1 1 1 1 1 1 1 1 1 ";
+"2 2 2 2 2 2 2 2 2 2 ";
 
 var c2 = 
 "0 0 0 0 0 0 0 0 0 0 \n" +
 "0 0 0 1 1 1 1 0 0 0 \n" +
-"1 1 1 1 1 1 1 1 1 1 \n" +
-"1 1 1 1 1 1 1 1 1 1 ";
+"1 1 1 2 2 2 2 1 1 1 \n" +
+"2 2 2 2 2 2 2 2 2 2 ";
 
 var c3 = 
 "0 0 0 0 1 1 0 0 0 0 \n" +
-"0 0 0 1 1 1 0 0 0 0 \n" +
-"1 1 1 1 1 1 0 0 0 0 \n" +
-"1 1 1 1 1 1 1 1 1 1 ";
+"0 0 0 1 2 2 0 0 0 0 \n" +
+"1 1 1 2 2 2 0 0 0 0 \n" +
+"2 2 2 2 2 2 1 1 1 1 ";
