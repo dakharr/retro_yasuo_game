@@ -29,14 +29,6 @@ function createSceneMenu()
     sprite.position = new BABYLON.Vector3(7,6.5,0);
 
 
-    // Voir Nico
-    var spPanneau = new BABYLON.SpriteManager("spPanneau", "resources/pancarte.png", 0, 128, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    
-    var spritePanneau = new BABYLON.Sprite("spritePanneau", spPanneau);
-    spritePanneau.playAnimation(1,4, true, 300);
-    spritePanneau.height = 4;
-    spritePanneau.width = 4;
-    spritePanneau.position = new BABYLON.Vector3(7,6.5,0);
 
     var end;
     var spawn;
