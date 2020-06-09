@@ -45,7 +45,7 @@ Nous avons porté une attention toute particulière à l'audio du jeu. Notamment
 
 ### Optimisation de l'affichage des blocks
 
-Grâce à l'utilisation de block on peut optimiser drastiquement l'affichage du jeu le permettant d'être potentiellement "jouable" sur mobile (avec l'ajout de commande adapté à la platforme).
+Grâce à l'utilisation de block on peut optimiser drastiquement l'affichage du jeu lui permettant d'être potentiellement "jouable" sur mobile (avec l'ajout de commande adapté à la platforme).
 
 ### Fonds parallax
 
