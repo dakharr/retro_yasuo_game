@@ -113,9 +113,6 @@ function updatePlayer(map, scene, spawnPosition, poros, altBehaviour = false, fo
 
     //update player position
     var deltatime = engine.getDeltaTime();
-    var rayPosRight;
-    var rayRight;
-    var hitRight;
 
     var finalDstX = xdep*deltatime;
 
@@ -123,11 +120,19 @@ function updatePlayer(map, scene, spawnPosition, poros, altBehaviour = false, fo
     {
         finalDstX = (xdep*2 + force)*deltatime;
 
-        rayPosRight = new BABYLON.Vector3(player.position.x, player.position.y-0.25, player.position.z);
-        rayRight = new BABYLON.Ray(rayPosRight, new BABYLON.Vector3(1,0,0),0.5);
-        hitRight = scene.pickWithRay(rayRight);
+        var rayPosRight = new BABYLON.Vector3(player.position.x, player.position.y-0.10, player.position.z);
+        var rayRight = new BABYLON.Ray(rayPosRight, new BABYLON.Vector3(1,0,0),0.5);
+        var hitRight = scene.pickWithRay(rayRight);
 
-        if(hitRight.pickedMesh!=null && xdep>0)
+        var rayPosRight2 = new BABYLON.Vector3(player.position.x, player.position.y-0.40, player.position.z);
+        var rayRight2 = new BABYLON.Ray(rayPosRight2, new BABYLON.Vector3(1,0,0), 0.5);
+        var hitRight2 = scene.pickWithRay(rayRight2);
+        
+        var rayPosRight3 = new BABYLON.Vector3(player.position.x, player.position.y+0.20, player.position.z);
+        var rayRight3 = new BABYLON.Ray(rayPosRight3, new BABYLON.Vector3(1,0,0), 0.5);
+        var hitRight3 = scene.pickWithRay(rayRight3);
+
+        if((hitRight.pickedMesh!=null && xdep>0) || (hitRight2.pickedMesh!=null && xdep>0) || (hitRight3.pickedMesh!=null && xdep>0))
             finalDstX = force*deltatime;
     }
     
