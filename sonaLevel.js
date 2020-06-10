@@ -90,6 +90,29 @@ function sonaScene()
 
     // ---------------------------------
 
+    // --- ui text -------------
+
+    // GUI
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("jUI");
+
+    var text1 = new BABYLON.GUI.TextBlock();
+    text1.text = "";
+    text1.fontFamily = "pixel";
+    text1.color = "white";
+    text1.fontSize = 32;
+    text1.top = "0%";
+    advancedTexture.addControl(text1); 
+
+    var text2 = new BABYLON.GUI.TextBlock();
+    text2.text = "";
+    text2.fontFamily = "pixel";
+    text2.color = "white";
+    text2.fontSize = 32;
+    text2.top = "5%";
+    advancedTexture.addControl(text2); 
+
+    // -------------------
+
     var swapKinetic = new BABYLON.Sound("swap", "resources/soundEffects/swapKinetic.mp3", scene);
     var swapConcussive= new BABYLON.Sound("swap", "resources/soundEffects/swapConcussive.mp3", scene);
     var swapEthereal = new BABYLON.Sound("swap", "resources/soundEffects/swapEthereal.mp3", scene);
@@ -149,7 +172,7 @@ function sonaScene()
             else if(levelState == 2)
             {
                 k_background.material = materialC;
-                
+
                 particleSystem.color1 = new BABYLON.Color4(0.90, 0.06, 0.06, 1.0);
                 particleSystem.color2 = new BABYLON.Color4(1, 0.65, 0.20, 1.0);
                 scrollSpeed = mediumScrollSpeed;
@@ -174,6 +197,9 @@ function sonaScene()
                 particleSystem.maxEmitPower = 4;
                 particleSystem.updateSpeed = 0.005;
                 scrollSpeed = 0;
+
+                text1.text = "Congratulations !";
+                text2.text = "You helped Yasuo to go to the DJ Sona concert. Well done summoner !";
             }
                 
         }
