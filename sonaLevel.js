@@ -40,8 +40,8 @@ function sonaScene()
     var particleSystem = new BABYLON.ParticleSystem("particles", 1000, scene);
     particleSystem.particleTexture = new BABYLON.Texture("resources/musical_note.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
 
-    particleSystem.color1 = new BABYLON.Color4(0.94, 0.04, 0.04);
-    particleSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+    particleSystem.color1 = new BABYLON.Color4(0, 0.35, 0.89, 1.0);
+    particleSystem.color2 = new BABYLON.Color4(0, 0.86, 0.47, 1.0);
     particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
 
     particleSystem.emitter = fountain;
