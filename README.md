@@ -33,11 +33,11 @@ Voici quelques détails sur les techniques que nous avons mises en place dans le
 Nous avons mis en place un éditeur de niveau pour accélérer la production et améliorer la qualité des niveaux du jeu.
 Cet éditeur se présente sous la forme d'une page html qui va nous permettre de faire notre niveau puis va nous générer une chaine de caractère à ajouter dans la liste des niveaux.
 
-On peut accéder à l'éditeur en ajoutant /editor au chemin du jeu sur le navigateur.
+On peut accéder à l'éditeur en ajoutant /editor au chemin du jeu sur le navigateur (ne fonctionne pas sur itch.io).
 
 ### Mécanique de saut
 
-Calcul spécifique pour atteindre une certaine hauteur...
+Pour le saut nous utilisons une formule qui nous permet de sauter a une hauteur prédéfinie. De plus pour éviter de frustrer le joueur s'il saute trop tard d'une platforme, nous avons ajouté un petit délai où le joueur peut encore sauter même s'il n'est plus sur la platforme.
 
 ### Audio
 
