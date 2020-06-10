@@ -162,6 +162,8 @@ function loadchunk(stringChunk, posoffset, originalBlockList)
                 case "3":
                     chunkBlocks.push(instanceBlock(pos, originalBlockList[2]));
                     break;
+                case "4":
+                    chunkBlocks.push(instanceBlock(pos, originalBlockList[3]));
             }
         }
     }
@@ -183,8 +185,8 @@ function getRandomChunkModel()
 var c1 = 
 "0 0 0 0 0 0 0 0 0 0 \n" +
 "0 0 0 0 0 0 0 0 0 0 \n" +
-"1 1 1 1 1 1 1 1 1 1 \n" +
-"2 2 2 2 2 2 2 2 2 2 ";
+"4 4 4 4 4 4 4 4 4 4 \n" +
+"4 4 4 4 4 4 4 4 4 4 ";
 
 var c2 = 
 "0 0 0 0 0 0 0 0 0 0 \n" +

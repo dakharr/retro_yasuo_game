@@ -3,7 +3,7 @@ var width;
 var height;
 var selectedBlock;
 
-var block = ["resources/editor/void.png", "resources/editor/grassy_dirt.png", "resources/editor/dirt.png", "resources/editor/cave_dirt.png"];
+var block = ["resources/editor/void.png", "resources/editor/grassy_dirt.png", "resources/editor/dirt.png", "resources/editor/cave_dirt.png", "resources/editor/sona_block.png"];
 var spawn = "resources/editor/spawn.png";
 var exit = "resources/editor/exit.png";
 var poro = "resources/editor/poro_editor.png";
