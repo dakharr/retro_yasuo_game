@@ -68,8 +68,19 @@
         //var gameScene = specialScene();
 
         var audioScene = new BABYLON.Scene(engine);
-        var music = new BABYLON.Sound("Music", "resources/music/theme_menu.mp3", audioScene, null, {loop: true, autoplay: true});
-        //var music = new BABYLON.Sound("Music", "resources/dj-sona-the-extended-sessions-kinetic-megamix.mp3", audioScene, null, {loop: true, autoplay: true});
+        //var music = new BABYLON.Sound("Music", "resources/music/theme_menu.mp3", audioScene, null, {loop: true, autoplay: true});
+
+        var music_menu = new BABYLON.Sound("Music", "resources/music/theme_menu.mp3", audioScene, null, {loop: true, autoplay: true});
+        var music_mountain = new BABYLON.Sound("Music", "resources/music/theme_mountain.mp3", audioScene, null, {loop: true, autoplay: false});
+        var music_cave = new BABYLON.Sound("Music", "resources/music/theme_cave.mp3", audioScene, null, {loop: true, autoplay: false});
+        var music_sona_intro = new BABYLON.Sound("Music", "resources/music/sona_intro.mp3", audioScene, null, {loop: true, autoplay: false});
+        var music_kinetic = new BABYLON.Sound("Music", "resources/music/kinetic.mp3", audioScene, null, {loop: true, autoplay: false});
+        var music_concussive = new BABYLON.Sound("Music", "resources/music/concussive.mp3", audioScene, null, {loop: true, autoplay: false});
+        var music_ethereal = new BABYLON.Sound("Music", "resources/music/theme_ethereal.mp3", audioScene, null, {loop: true, autoplay: false});
+
+        var music = music_menu;
+        music.play();
+
 
         BABYLON.Engine.audioEngine.setGlobalVolume(0.1);
 
@@ -97,19 +108,26 @@
             {
                 music.stop();
                 music.dispose();
-                music = new BABYLON.Sound("Music", "resources/dj-sona-the-extended-sessions-kinetic-megamix.mp3", audioScene, null, {loop: true, autoplay: true});
+                music = music_sona_intro;
+                music.play();
                 //placeholder moche
-                gameScene = sonaScene();// createScenePlaceholder();
+                gameScene = sonaScene();
             }
             else
             {
                 if(levelCount == 0) //mountain soundtrack
-                    music = new BABYLON.Sound("Music", "resources/music/theme_mountain.mp3", audioScene, null, {loop: true, autoplay: true});
+                {
+                    music.stop();
+                    music.dispose();
+                    music = music_mountain;
+                    music.play();
+                }
                 if(levelCount == 7)
                 {
                     music.stop();
                     music.dispose();
-                    music = new BABYLON.Sound("Music", "resources/music/theme_cave.mp3", audioScene, null, {loop: true, autoplay: true});
+                    music = music_cave;
+                    music.play();
                 }
                 gameScene = createScene(stringLevelList[levelCount], biome);
 

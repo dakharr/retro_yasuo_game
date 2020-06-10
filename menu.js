@@ -94,10 +94,6 @@ function createSceneMenu()
     var drawPaperDelay = 1000;
     var drawPaperTrigger = false;
 
-    //sound
-    //music = new BABYLON.Sound("Music", "resources/theme_menu.mp3", scene, null, {loop: true, autoplay: true});
-    //BABYLON.Engine.audioEngine.setGlobalVolume(0.1);
-
     // background
     var background = BABYLON.MeshBuilder.CreatePlane("background", {width: 20, height: 20}, scene);
     var material = new BABYLON.StandardMaterial("texture1", scene);
