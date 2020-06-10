@@ -37,7 +37,7 @@ On peut accéder à l'éditeur en ajoutant /editor au chemin du jeu sur le navig
 
 ### Mécanique de saut
 
-Pour le saut nous utilisons une formule qui nous permet de sauter a une hauteur prédéfinie. De plus pour éviter de frustrer le joueur s'il saute trop tard d'une platforme, nous avons ajouté un petit délai où le joueur peut encore sauter même s'il n'est plus sur la platforme.
+Pour le saut nous utilisons une formule qui nous permet de sauter à une hauteur prédéfinie. De plus pour éviter de frustrer le joueur s'il saute trop tard d'une platforme, nous avons ajouté un petit délai où le joueur peut encore sauter même s'il n'est plus sur la platforme.
 
 ### Audio
 
