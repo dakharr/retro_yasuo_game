@@ -105,6 +105,13 @@ function createSceneMenu()
     background.material = material;
     background.position = new BABYLON.Vector3(5, 12, 1.2);
 
+    var infoPanel = BABYLON.MeshBuilder.CreatePlane("info", {width:2, height:2}, scene);
+    var infoMat = new BABYLON.StandardMaterial("texture2", scene);
+    infoMat.diffuseTexture = new BABYLON.Texture("resources/pancarte.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    infoMat.diffuseTexture.hasAlpha = true;
+    infoPanel.material = infoMat;
+    infoPanel.position = new BABYLON.Vector3(9.5, 5.5, -1.8);
+
     // GUI
     var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("jUI");
 
