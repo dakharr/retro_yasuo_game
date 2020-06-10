@@ -116,6 +116,7 @@ function createSceneMenu()
     text1.top = "35%";
     advancedTexture.addControl(text1); 
 
+
     var textPaper = new BABYLON.GUI.TextBlock();
     textPaper.text = "";
     textPaper.fontFamily = "pixel";
