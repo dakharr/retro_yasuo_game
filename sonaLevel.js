@@ -286,15 +286,20 @@ function loadchunk(stringChunk, posoffset, originalBlockList)
 function getRandomChunkModel()
 {
     var rand = Math.random()*100;
-    if(rand < 30)
+    if(rand < 20)
         return c1;
-    else if(rand < 60)
+    else if(rand < 40)
         return c2;
-    else
+    else if(rand < 60)
         return c3;
+    else if(rand < 80)
+        return c4;
+    else 
+        return c5;
 }
 
 var c1 = 
+"0 0 0 0 0 0 0 0 0 0 \n" +
 "0 0 0 0 0 0 0 0 0 0 \n" +
 "0 0 0 0 0 0 0 0 0 0 \n" +
 "4 4 4 4 4 4 4 4 4 4 \n" +
@@ -302,12 +307,28 @@ var c1 =
 
 var c2 = 
 "0 0 0 0 0 0 0 0 0 0 \n" +
+"0 0 0 0 0 0 0 0 0 0 \n" +
 "0 0 0 4 4 4 4 0 0 0 \n" +
 "4 4 4 4 4 4 4 4 4 4 \n" +
 "4 4 4 4 4 4 4 4 4 4 ";
 
 var c3 = 
+"0 0 0 0 0 0 0 0 0 0 \n" +
 "0 0 0 0 4 4 0 0 0 0 \n" +
 "0 0 0 4 4 4 0 0 0 0 \n" +
 "4 4 4 4 4 4 0 0 0 0 \n" +
+"4 4 4 4 4 4 4 4 4 4 ";
+
+var c4 = 
+"0 0 4 4 4 4 4 4 0 0 \n" +
+"0 0 0 0 0 0 0 0 0 0 \n" +
+"0 0 0 0 0 0 0 0 0 0 \n" +
+"0 0 0 0 0 0 0 0 0 0 \n" +
+"4 4 4 4 4 4 4 4 4 4 ";
+
+var c5 = 
+"0 0 4 4 0 0 4 4 0 0 \n" +
+"0 0 0 0 0 0 0 0 0 0 \n" +
+"0 0 0 0 0 0 0 0 0 0 \n" +
+"0 0 0 0 0 0 0 0 0 0 \n" +
 "4 4 4 4 4 4 4 4 4 4 ";
