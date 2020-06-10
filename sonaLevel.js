@@ -7,7 +7,7 @@ function sonaScene()
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(-2, 1, -2), scene);
     light.intensity = 0.7;
 
-    camera.position = new BABYLON.Vector3(0,0, -8);
+    camera.position = new BABYLON.Vector3(0,1.6, -8);
 
     createPlayer(scene);
     playerSetPosition(new BABYLON.Vector3(0, 5, 0));
@@ -73,6 +73,23 @@ function sonaScene()
 
     // --------------------
 
+    //---------- background -------------
+
+    var materialK = new BABYLON.StandardMaterial("texture1", scene);
+    materialK.diffuseTexture = new BABYLON.Texture("resources/sona_k_background.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+
+    var materialC = new BABYLON.StandardMaterial("texture1", scene);
+    materialC.diffuseTexture = new BABYLON.Texture("resources/sona_c_background.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+
+    var materialE = new BABYLON.StandardMaterial("texture1", scene);
+    materialE.diffuseTexture = new BABYLON.Texture("resources/sona_e_background.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+
+    var k_background = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
+    k_background.material = materialK;
+    k_background.position = new BABYLON.Vector3(0, 1.6, 1.2);
+
+    // ---------------------------------
+
     var swapKinetic = new BABYLON.Sound("swap", "resources/soundEffects/swapKinetic.mp3", scene);
     var swapConcussive= new BABYLON.Sound("swap", "resources/soundEffects/swapConcussive.mp3", scene);
     var swapEthereal = new BABYLON.Sound("swap", "resources/soundEffects/swapEthereal.mp3", scene);
@@ -117,6 +134,8 @@ function sonaScene()
             
             if(levelState == 1)
             {
+                k_background.material = materialK;
+
                 particleSystem.color1 = new BABYLON.Color4(0, 0.35, 0.89, 1.0);
                 particleSystem.color2 = new BABYLON.Color4(0, 0.86, 0.47, 1.0);
 
@@ -129,6 +148,8 @@ function sonaScene()
             }
             else if(levelState == 2)
             {
+                k_background.material = materialC;
+                
                 particleSystem.color1 = new BABYLON.Color4(0.90, 0.06, 0.06, 1.0);
                 particleSystem.color2 = new BABYLON.Color4(1, 0.65, 0.20, 1.0);
                 scrollSpeed = mediumScrollSpeed;
@@ -137,6 +158,8 @@ function sonaScene()
             }
             else if(levelState == 3)
             {
+                k_background.material = materialE;
+
                 particleSystem.color1 = new BABYLON.Color4(0.80, 0.20, 1.0, 1.0);
                 particleSystem.color2 = new BABYLON.Color4(0.33, 0.2, 1.0, 1.0);
 
