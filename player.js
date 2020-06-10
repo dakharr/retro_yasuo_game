@@ -128,9 +128,16 @@ function updatePlayer(map, scene, spawnPosition, poros, altBehaviour = false, fo
         var rayRight2 = new BABYLON.Ray(rayPosRight2, new BABYLON.Vector3(1,0,0), 0.5);
         var hitRight2 = scene.pickWithRay(rayRight2);
         
-        var rayPosRight3 = new BABYLON.Vector3(player.position.x, player.position.y+0.20, player.position.z);
+        var rayPosRight3 = new BABYLON.Vector3(player.position.x, player.position.y+0.30, player.position.z);
         var rayRight3 = new BABYLON.Ray(rayPosRight3, new BABYLON.Vector3(1,0,0), 0.5);
         var hitRight3 = scene.pickWithRay(rayRight3);
+
+        // let rayHelper1 = new BABYLON.RayHelper(rayRight);
+        // rayHelper1.show(scene);
+        // let rayHelper2 = new BABYLON.RayHelper(rayRight2);		
+        // rayHelper2.show(scene);
+        // let rayHelper3 = new BABYLON.RayHelper(rayRight3);		
+        // rayHelper3.show(scene);
 
         if((hitRight.pickedMesh!=null && xdep>0) || (hitRight2.pickedMesh!=null && xdep>0) || (hitRight3.pickedMesh!=null && xdep>0))
             finalDstX = force*deltatime;
