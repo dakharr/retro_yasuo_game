@@ -50,3 +50,15 @@ Grâce à l'utilisation de block on peut optimiser drastiquement l'affichage du 
 ### Fonds parallax
 
 Pour rendre nos niveaux plus dynamiques nous avons utilisé l'effet de parallax. Cela consiste à mettre plusieurs fonds qui défilent à des vitesses différentes pour donner une illusion de profondeur. Pour notre jeu nous avons fait un parallax pour le monde des plaines et un pour celui de la grotte, chacun composé de 3 couches.
+
+## Remerciements
+
+Nous tenons à remercier les organisateurs de Games on Web 2020 pour avoir organisé ce concours, Michel Buffa et Sebastien Vandenberghe pour leurs aides et leurs conseils.
+
+Nous tenons à remercier tout particulièrement Nathan Miniere qui a composé les musiques du jeu.
+
+## Liens utiles
+
+https://www.babylonjs.com
+https://www.cgi.fr/fr-fr/event/games-on-web-2020
+https://www.nathanminiere.com
