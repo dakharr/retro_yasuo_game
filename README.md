@@ -60,5 +60,7 @@ Nous tenons à remercier tout particulièrement Nathan Miniere qui a composé le
 ## Liens utiles
 
 https://www.babylonjs.com
+
 https://www.cgi.fr/fr-fr/event/games-on-web-2020
+
 https://www.nathanminiere.com
