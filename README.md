@@ -24,6 +24,10 @@ spacebar | attaque
 
 le jeu est disponible sur ce lien : https://dakharr.itch.io/yasuo
 
+## La vidéo
+
+Une vidéo de présentation du jeu est disponible [ici](https://youtu.be/qOd6T5icWsk)
+
 ## Détails techniques
 
 Voici quelques détails sur les techniques que nous avons mises en place dans le jeu.
