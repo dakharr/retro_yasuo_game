@@ -80,13 +80,13 @@ function updatePlayer(map, scene, spawnPosition, poros, altBehaviour = false, fo
 
     lastposx = player.position.x;
 
-    if((map["q"] || map["Q"]))
+    if((map["q"] || map["Q"] || map["ArrowLeft"]))
     {
         xdep = -speed;
         playerSprite.invertU = true;
         shieldSprite.invertU = true;
     };
-    if((map["d"] || map["D"]))
+    if((map["d"] || map["D"] || map["ArrowRight"]))
     {
         xdep = speed;
         playerSprite.invertU = false;
@@ -94,7 +94,7 @@ function updatePlayer(map, scene, spawnPosition, poros, altBehaviour = false, fo
     };
 
     //jump
-    if((map["Z"] || map["z"]) && (grounded || (extendJumpTimer + extendJumpTime > Date.now() )) && !jump)
+    if((map["Z"] || map["z"] || map["ArrowUp"]) && (grounded || (extendJumpTimer + extendJumpTime > Date.now() )) && !jump)
     {
         vy = Math.sqrt(0 - 2*gravity*jumpHeight);
         playRandomJumpSound();
