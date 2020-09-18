@@ -20,6 +20,15 @@ spacebar | attaque
 
 *(pour un clavier azerty)*
 
+Command | Action
+----------- | ---------------
+⬅️➡️ | horizontal movement
+⬆️ | jump
+spacebar | attack
+
+*(for other keyboard)*
+
+
 ## Le jeu
 
 le jeu est disponible sur ce lien : https://dakharr.itch.io/yasuo
