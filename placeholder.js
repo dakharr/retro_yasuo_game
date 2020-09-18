@@ -23,7 +23,6 @@ function createScenePlaceholder()
     text1.fontFamily = "pixel";
     text1.color = "white";
     text1.fontSize = 32;
-    //text1.top = 300;
     advancedTexture.addControl(text1); 
 
 

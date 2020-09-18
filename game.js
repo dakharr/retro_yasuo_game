@@ -64,30 +64,6 @@ function createScene(stringLevel, biome)
     land_foreground.material = first_mat;
     land_foreground.position = new BABYLON.Vector3(0, 4, 1.2);
 
-
-
-    //background cave
-    // var cave_background = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
-    // var cave_background_mat = new BABYLON.StandardMaterial("texture1", scene);
-    // cave_background_mat.diffuseTexture = new BABYLON.Texture("resources/cave_background.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    // cave_background.material = cave_background_mat;
-    // cave_background.position = new BABYLON.Vector3(0, 4, 1.2);
-
-    // var cave_middleground = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
-    // var cave_middleground_mat = new BABYLON.StandardMaterial("texture1", scene);
-    // cave_middleground_mat.diffuseTexture = new BABYLON.Texture("resources/cave_middleground.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    // cave_middleground_mat.diffuseTexture.hasAlpha = true;
-    // cave_middleground.material = cave_middleground_mat;
-    // cave_middleground.position = new BABYLON.Vector3(0, 4, 1.2);
-
-    // var cave_foreground = BABYLON.MeshBuilder.CreatePlane("background", {width: 18, height: 9}, scene);
-    // var cave_foreground_mat = new BABYLON.StandardMaterial("texture1", scene);
-    // cave_foreground_mat.diffuseTexture = new BABYLON.Texture("resources/cave_foreground.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    // cave_foreground_mat.diffuseTexture.hasAlpha = true;
-    // cave_foreground.material = cave_foreground_mat;
-    // cave_foreground.position = new BABYLON.Vector3(0, 4, 1.2);
-
-
     var background;
     var middleground;
     var foreground;
@@ -136,8 +112,6 @@ function createScene(stringLevel, biome)
         background.material.diffuseTexture.uOffset += trueXDeplacement/100;
         middleground.material.diffuseTexture.uOffset += trueXDeplacement/50;
         foreground.material.diffuseTexture.uOffset += trueXDeplacement/20;
-        //underground_backround.material.diffuseTexture.uOffset += trueXDeplacement/20;
-        //first_backround.material.diffuseTexture.uOffset += trueXDeplacement/30;
 
         //cam and background follow player
         camera.position.x = player.position.x;
@@ -151,12 +125,10 @@ function createScene(stringLevel, biome)
 
         //update backgrounds
         background.position.x = player.position.x;
-        background.position.y = camera.position.y;// + 4;
+        background.position.y = camera.position.y;
         middleground.position.x = player.position.x;
         middleground.position.y = camera.position.y;
         foreground.position.x = player.position.x;
-        //underground_backround.position.x = player.position.x;
-        //first_backround.position.x = player.position.x;
 
         //new endlevel checking
         if(endBlock == null)
@@ -219,7 +191,7 @@ function loadLevel(stringLevel, scene, spawnPoints, poros)
             }            
             else if(caracter[width] == "x")
             {
-                var spawnPosition = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0); //mal spawnposition
+                var spawnPosition = new BABYLON.Vector3(width/2, (levelHeight - height)/2, 0);
                 spawnPoints.push(spawnPosition);
             }
             else if(caracter[width] == "e")

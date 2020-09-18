@@ -48,8 +48,6 @@ function sonaScene()
     particleSystem.minEmitBox = new BABYLON.Vector3(-10, -10, 0);
     particleSystem.maxEmitBox = new BABYLON.Vector3(10, 10, 0);
 
-    //particleSystem.rotate(BABYLON.Axis.Z, Math.PI/2, BABYLON.Space.WORLD);
-
     particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
     
     particleSystem.minSize = 0.1;
@@ -215,11 +213,9 @@ function sonaScene()
         if(chunk[0][0].position.x <= -15)
         {
             //remove chunk and add new
-            console.log(chunk[0][0].position.x);
             var removedChunk = chunk.shift();
             freeChunk(removedChunk);
             chunk.push(addChunk(getRandomChunkModel(), new BABYLON.Vector3(chunk[chunk.length-1][chunk[chunk.length-1].length-1].position.x+0.5, -2, 0), originalBlocks));
-            console.log("aa");
         }
     });
 

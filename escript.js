@@ -81,7 +81,6 @@ function convertMap()
         for(var x=0; x<width;x++)
         {
             var imgsrc = document.getElementById("img"+x+"-"+y).src;
-            //console.log(imgsrc);
 
             if(imgsrc.includes(spawn))
                 output += "x ";

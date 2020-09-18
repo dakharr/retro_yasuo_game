@@ -22,7 +22,7 @@ var xdep;
 var moving = false;
 var playerHealth;
 var playerHealthMax = 2;
-var immortalDelay = 1000; //2s
+var immortalDelay = 1000;
 var immortalTimer = 0;
 
 var attackDelay = 1000;
@@ -48,7 +48,6 @@ function createPlayer(scene)
     var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager", "resources/yasuo_animation.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     playerSprite = new BABYLON.Sprite("pp", spriteManagerPlayer);
     playerSprite.playAnimation(1, 5, true, 100);
-    // playerSprite.playAnimation(16, 23, true, 100);
 
     var spriteManagerShield = new BABYLON.SpriteManager("shieldManager", "resources/wind_shield.png", 2, 64, scene, 0.01, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     shieldSprite = new BABYLON.Sprite("sh", spriteManagerShield);
@@ -132,13 +131,6 @@ function updatePlayer(map, scene, spawnPosition, poros, altBehaviour = false, fo
         var rayRight3 = new BABYLON.Ray(rayPosRight3, new BABYLON.Vector3(1,0,0), 0.5);
         var hitRight3 = scene.pickWithRay(rayRight3);
 
-        // let rayHelper1 = new BABYLON.RayHelper(rayRight);
-        // rayHelper1.show(scene);
-        // let rayHelper2 = new BABYLON.RayHelper(rayRight2);		
-        // rayHelper2.show(scene);
-        // let rayHelper3 = new BABYLON.RayHelper(rayRight3);		
-        // rayHelper3.show(scene);
-
         if((hitRight.pickedMesh!=null && xdep>0) || (hitRight2.pickedMesh!=null && xdep>0) || (hitRight3.pickedMesh!=null && xdep>0))
             finalDstX = force*deltatime;
     }
@@ -165,11 +157,6 @@ function updatePlayer(map, scene, spawnPosition, poros, altBehaviour = false, fo
     var raypos2 = new BABYLON.Vector3(player.position.x-0.1, player.position.y-0.5, player.position.z);
     var ray2 = new BABYLON.Ray(raypos2, new BABYLON.Vector3(0, -1, 0), 0.01);
     var hit2 = scene.pickWithRay(ray2);
-
-    // let rayHelper1 = new BABYLON.RayHelper(ray1);
-    // rayHelper1.show(scene);
-    // let rayHelper2 = new BABYLON.RayHelper(ray2);		
-    // rayHelper2.show(scene);
 
     if(hit1.pickedMesh!=null || hit2.pickedMesh!=null)
     {

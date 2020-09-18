@@ -30,7 +30,6 @@
         <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
         <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
         <script src="poro.js"></script>
-        <script src="finalLevel.js"></script>
         <script src="level.js"></script>
         <script src="level1.js"></script>
         <script src="level2.js"></script>
@@ -63,12 +62,8 @@
         
    
         var gameScene = createSceneMenu();
-        //var gameScene = sonaScene();
-        //var gameScene = createScene(stringLevel1);
-        //var gameScene = specialScene();
 
         var audioScene = new BABYLON.Scene(engine);
-        //var music = new BABYLON.Sound("Music", "resources/music/theme_menu.mp3", audioScene, null, {loop: true, autoplay: true});
 
         var music_menu = new BABYLON.Sound("Music", "resources/music/theme_menu.mp3", audioScene, null, {loop: true, autoplay: true});
         var music_mountain = new BABYLON.Sound("Music", "resources/music/theme_mountain.mp3", audioScene, null, {loop: true, autoplay: false});
@@ -110,7 +105,6 @@
                 music.dispose();
                 music = music_sona_intro;
                 music.play();
-                //placeholder moche
                 gameScene = sonaScene();
             }
             else
